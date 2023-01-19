@@ -1,0 +1,15 @@
+.main {
+    font-family: Georgia, serif;
+}
+.main h1 {
+    margin-top: 0px;
+}
+.main img {
+    background-size: cover, contain;
+    background-repeat: no-repeat, no-repeat;
+    background: white;
+    opacity: 0.8;
+    width: auto;
+    height: auto;
+    position: relative;
+}

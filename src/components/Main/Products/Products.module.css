@@ -1,0 +1,14 @@
+.productsContainer {
+    font-family: Georgia, serif;
+    margin-top: 0;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 300px;
+}
+
+.productsContainer p {
+    font-family: Georgia, serif;
+    margin-top: 0;
+    padding: 20px;
+
+}

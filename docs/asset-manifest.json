@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "./static/css/main.8558ec72.css",
+    "main.js": "./static/js/main.faf8bac8.js",
+    "static/media/fonMainDog.jpg": "./static/media/fonMainDog.caaab13f0c9a21ac9d2e.jpg",
+    "static/media/logoOne.png": "./static/media/logoOne.1ca7d2cd477dd0a928cf.png",
+    "index.html": "./index.html",
+    "main.8558ec72.css.map": "./static/css/main.8558ec72.css.map",
+    "main.faf8bac8.js.map": "./static/js/main.faf8bac8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8558ec72.css",
+    "static/js/main.faf8bac8.js"
+  ]
+}
