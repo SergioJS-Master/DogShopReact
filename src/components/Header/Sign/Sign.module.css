@@ -3,8 +3,12 @@
     justify-content: center;
     flex-direction: column;
     padding: 100px;
+    padding-right: 600px;
+    padding-left: 600px;
 }
+
 .signForm input {
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 6px;
+    margin: 5px;
 }

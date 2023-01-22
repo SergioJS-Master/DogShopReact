@@ -27,5 +27,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/jsx-filename-extension': 0,
     'max-len': ['error', { code: 100 }],
+    'eslintobject-curly-newline': 0,
+    'linebreak-style': 0,
   },
 }

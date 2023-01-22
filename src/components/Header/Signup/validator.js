@@ -4,14 +4,14 @@ import * as Yup from 'yup'
 
 export const createFormSignUpValidator = Yup.object({
   email: Yup.string()
-    .email('Invalid email address')
-    .required('Required'),
+    .email('Некорректный адрес почты')
+    .required('Придумайте email'),
   group: Yup.string()
-    .min(1, 'Must be 1 characters or more')
-    .max(20, 'Must be 20 characters or less')
-    .required('Required'),
+    .min(3, 'Минимум 3 символа')
+    .max(20, 'Максимум 20 символов')
+    .required('Придумайте номер группы'),
   password: Yup.string()
-    .min(5, 'Must be 5 characters or more')
-    .max(25, 'Must be 15 characters or less')
-    .required('Required'),
+    .min(5, 'Минимум 5 символов')
+    .max(25, 'Максимум 20 символов')
+    .required('Придумайте пароль'),
 })

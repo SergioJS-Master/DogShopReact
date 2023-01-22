@@ -27,12 +27,12 @@ export function Header() {
           <div className={headerStyle.liHeaderSignInfoBtn}>
             <div>
               <li>
-                <NavLink to="/signup">Signup</NavLink>
+                <NavLink to="/signup">Регистрация</NavLink>
               </li>
             </div>
             <div>
               <li>
-                <NavLink to="/sign">Sign</NavLink>
+                <NavLink to="/sign">Войти</NavLink>
               </li>
             </div>
           </div>

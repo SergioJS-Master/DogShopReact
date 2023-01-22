@@ -1,18 +1,20 @@
 .header {
-    background-color: rgb(8, 0, 73);
+    background-color: rgb(8, 0, 57);
     font-family: Georgia, serif;
     width: 100%;
     height: 165px;
-} 
+}
+
 .header a {
     text-decoration: none;
-    color: rgb(8, 0, 73);
+    color: rgb(8, 0, 57);
     padding: 20px;
     font-size: 20px;
- 
+
 }
+
 ul {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     margin-top: 0px;
     padding: 0px;
@@ -20,29 +22,34 @@ ul {
     height: 100px;
     align-items: center;
 }
+
 .liHeaderBtn {
     display: flex;
-  
+
 }
+
 .liHeaderBtn li {
     margin: 10px;
     background-color: rgb(255, 255, 255);
-    border-radius: 8px;
+    border-radius: 6px;
     list-style: none;
     padding: 10px;
 }
 
 .liHeaderSignInfoBtn {
-    display: flex;    
+    display: flex;
 }
+
 .liHeaderSignInfoBtn li {
     margin: 10px;
     background-color: rgb(255, 255, 255);
-    border-radius: 8px;
+    border-radius: 6px;
     list-style: none;
     padding: 10px;
+    box-shadow: 0px 0px 15px #FF8900;
 }
-.headerLogoLink img{
+
+.headerLogoLink img {
     height: 260px;
     width: 445px;
     position: absolute;
@@ -52,6 +59,7 @@ ul {
     z-index: 9999;
 
 }
+
 .headerLogoLink li {
     background: rgba(0, 0, 0, 0);
     position: relative;

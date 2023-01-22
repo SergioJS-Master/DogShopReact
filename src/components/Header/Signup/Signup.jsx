@@ -1,42 +1,75 @@
 /* eslint-disable linebreak-style */
-
-import {
-  Formik, Form, Field, ErrorMessage,
-} from 'formik'
+// eslint-disable-next-line object-curly-newline
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 import { createFormSignUpValidator } from './validator'
 import styleSignUp from './Signup.module.css'
+import logoHeaderTwo from '../../Img/logoTwo.png'
 
 const initialValues = {
-  email: 'email here',
-  group: 'sm9',
-  password: 'password here',
+  email: '',
+  group: '',
+  password: '',
 }
 
 export function Signup() {
+  const navigate = useNavigate()
+
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: (data) => fetch('https://api.react-learning.ru/signup', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      if (res.status > 299) {
+        throw new Error(
+          `Ошибка ${res.status}: пользователь с таким email уже зарегистрирован`,
+        )
+      } else res.json()
+    }),
+  })
+
+  const submitHandler = async (values) => {
+    await mutateAsync(values)
+    navigate('/sign')
+  }
+
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={createFormSignUpValidator}
-      onSubmit={(values) => {
-        console.log(values)
-      }}
-    >
-      <Form className={styleSignUp.signUpForm}>
-        <Field name="email" placeholder="Введите e-mail" type="text" />
-        <ErrorMessage name="email" />
+    <div className={styleSignUp.signUpForm}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={createFormSignUpValidator}
+        onSubmit={submitHandler}
+      >
+        <div className={styleSignUp.containerForm}>
+          <div className={styleSignUp.borderStyles}>
+            <div className={styleSignUp.styleForm}>
+              <Form>
+                <img src={logoHeaderTwo} alt="" />
+                <h2>Регистрация</h2>
+                <Field name="email" placeholder="Введите e-mail" type="email" />
+                <ErrorMessage name="email" />
 
-        <Field name="group" placeholder="Придумайте имя" type="text" />
-        <ErrorMessage name="group" />
+                <Field name="group" placeholder="Придумайте имя" type="text" />
+                <ErrorMessage name="group" />
 
-        <Field
-          name="password"
-          placeholder="Придумайте пароль (мин. 5 символов)"
-          type="text"
-        />
-        <ErrorMessage name="password" />
+                <Field
+                  name="password"
+                  placeholder="Придумайте пароль"
+                  type="text"
+                />
+                <ErrorMessage name="password" />
 
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
+                <button disabled={isLoading} type="submit">Зарегистрироваться</button>
+              </Form>
+            </div>
+          </div>
+        </div>
+      </Formik>
+    </div>
   )
 }

@@ -1,11 +1,71 @@
 .signUpForm {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    padding: 100px;
+    font-family: Georgia, serif;
+    background: rgba(255, 255, 255, .5) url(../../Img/fonSignUp.jpg) no-repeat;
+    background-position: top;
+    backdrop-filter: blur(5px);
 }
 
 .signUpForm input {
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 6px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.styleForm {
+    padding: 10px;
+}
+
+.styleForm h2 {
+    text-align: center;
+}
+
+.styleForm Form {
+    background-color: rgba(8, 0, 73, .5);
+    border: 10px solid rgb(8, 0, 57);
+    font-family: Georgia, serif;
+    display: grid;
+    padding: 70px;
+    border-radius: 6px;
+    border-width: 8px;
+    color: white;
+}
+
+.styleForm img {
+    height: 150px;
+    width: 235px;
+}
+
+
+.borderStyles {
+    padding: 2px;
+    border: 7px solid rgb(8, 0, 57);
+    border-radius: 6px;
+    box-shadow: 0px 0px 35px #FF8900;
+}
+
+.containerForm {
+    padding: 40px;
+}
+
+.styleForm button {
+    background: #FF8900;
+    color: rgb(8, 0, 57);
+    text-decoration: none;
+    border-radius: 6px;
+    display: block;
+    width: auto;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    padding: 10px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.styleForm button:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
 }
