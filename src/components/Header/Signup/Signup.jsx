@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { createFormSignUpValidator } from './validator'
 import styleSignUp from './Signup.module.css'
 import logoHeaderTwo from '../../Img/logoTwo.png'
+import { dogShopApi } from '../../../api/DogShopApi'
 
 const initialValues = {
   email: '',
@@ -17,21 +18,8 @@ const initialValues = {
 export function Signup() {
   const navigate = useNavigate()
 
-  const { mutateAsync, isLoading } = useMutation({
-    mutationFn: (data) => fetch('https://api.react-learning.ru/signup', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.status > 299) {
-        throw new Error(
-          `Ошибка ${res.status}: пользователь с таким email уже зарегистрирован`,
-        )
-      } else res.json()
-    }),
-  })
+  // eslint-disable-next-line max-len
+  const { mutateAsync, isLoading } = useMutation({ mutationFn: (values) => dogShopApi.signUp(values) })
 
   const submitHandler = async (values) => {
     await mutateAsync(values)

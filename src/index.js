@@ -8,9 +8,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from './App'
 import { Signup } from './components/Header/Signup/Signup'
 import { Sign } from './components/Header/Sign/Sign'
-import { Products } from './components/Main/Products/Products'
 import { Main } from './components/Main/Main'
 import { DogsShopProviderContext } from './Contexts/Contexts'
+import { ProductsPage } from './components/Main/ProductsPage/ProductsPage'
 
 const router = createBrowserRouter(
   [
@@ -32,12 +32,12 @@ const router = createBrowserRouter(
         },
         {
           path: 'products',
-          element: <Products />,
+          element: <ProductsPage />,
         },
       ],
     },
   ],
-  { basename: '/DogShopReact/' },
+  // { basename: '/DogShopReact/' },
 )
 
 const queryClient = new QueryClient()

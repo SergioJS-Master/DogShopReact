@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { createFormSignValidator } from './validatorsign'
 import styleSignForm from './Sign.module.css'
 import { DogsShopContext } from '../../../Contexts/Contexts'
+import { dogShopApi } from '../../../api/DogShopApi'
 
 const initialValues = {
   email: '',
@@ -21,30 +22,16 @@ export function Sign() {
   const { setToken } = useContext(DogsShopContext)
 
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: (data) => fetch('https://api.react-learning.ru/signin', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          throw new Error(`Ошибка - ${res.status}: неверный логин или пароль`)
-        }
-        if (res.status === 404) {
-          throw new Error(`Ошибка - ${res.status}: пользователь с email:${res.email} не найден`)
-        }
-        return res
-      })
-      .then((res) => res.json())
-      .then((data) => { setToken(data.token) }),
+    mutationFn: (values) => dogShopApi.signin(values).then((data) => {
+      setToken(data.token)
+    }),
   })
 
   const submitHandler = async (values) => {
     await mutateAsync(values)
-    console.log(values)
-    navigate('/products')
+    setTimeout(() => {
+      navigate('/products')
+    }, 0)
   }
 
   return (

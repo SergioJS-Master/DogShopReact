@@ -5,6 +5,7 @@
     padding: 100px;
     padding-right: 600px;
     padding-left: 600px;
+    min-width: 400px;
 }
 
 .signForm input {

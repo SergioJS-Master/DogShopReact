@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useEffect, useState } from 'react'
+import { dogShopApi } from '../api/DogShopApi'
 
 export const DogsShopContext = createContext()
 
@@ -13,6 +14,7 @@ export function DogsShopProviderContext({ children }) {
 
   useEffect(() => {
     localStorage.setItem(DS_LSTOKEN_KEY, JSON.stringify(token))
+    dogShopApi.setToken(token)
   }, [token])
 
   return <DogsShopContext.Provider value={{ token, setToken }}>{children}</DogsShopContext.Provider>
