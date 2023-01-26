@@ -1,10 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
-// import productPageStyles from './ProductsPage.module.css'
+import productPageStyles from './ProductsPage.module.css'
 import { DogsShopContext } from '../../../Contexts/Contexts'
 import { ProductOne } from '../Products/ProductsOne'
 import { dogShopApi } from '../../../api/DogShopApi'
+import { Loader } from '../../Loader/Loader'
 
 export function ProductsPage() {
   const { token } = useContext(DogsShopContext)
@@ -16,17 +18,35 @@ export function ProductsPage() {
     }
   }, [token])
 
-  const { data } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ['productsList'],
     queryFn: () => dogShopApi.getShowAllProducts(),
     enabled: token !== undefined,
   })
+
+  if (error) {
+    return (
+      <p>
+        Произошла ошибка:
+        {' '}
+        {error.message}
+      </p>
+    )
+  }
+
+  if (isLoading) {
+    return <p><Loader /></p>
+  }
+
+  if (data === undefined) {
+    return <p>Empty content</p>
+  }
+
   return (
 
-    <div>
-      {data.products.map((product, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <ProductOne product={product} key={index} />
+    <div className={productPageStyles.productsContainer}>
+      {data.products.map(({ _id: id, ...restProduct }) => (
+        <ProductOne {...restProduct} id={id} key={id} />
       ))}
     </div>
   )

@@ -32,7 +32,7 @@ export function Header() {
             </div>
             <div>
               <li>
-                <NavLink to="/sign">Войти</NavLink>
+                <NavLink to="/signin">Войти</NavLink>
               </li>
             </div>
           </div>
