@@ -77,3 +77,12 @@
 .styleButtonCardProduct {
     display: flex;
 }
+
+p {
+    padding: -10px;
+}
+
+p span {
+    color: rgb(8, 0, 57);
+    font-weight: 800;
+}

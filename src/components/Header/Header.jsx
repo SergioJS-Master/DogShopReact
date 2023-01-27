@@ -1,9 +1,12 @@
 /* eslint-disable linebreak-style */
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
 import headerStyle from './Header.module.css'
 import logoHeaderOne from '../Img/logoOne.png'
+import { DogsShopContext } from '../../Contexts/Contexts'
 
 export function Header() {
+  const { deleteToken, token } = useContext(DogsShopContext)
   return (
     <header className={headerStyle.header}>
       <nav>
@@ -31,9 +34,24 @@ export function Header() {
               </li>
             </div>
             <div>
-              <li>
-                <NavLink to="/signin">Войти</NavLink>
-              </li>
+              {token ? (
+                <li>
+                  <NavLink
+                    to="/signin"
+                    onClick={deleteToken}
+                  >
+                    Выйти
+                  </NavLink>
+                </li>
+              ) : (
+                <li>
+                  <NavLink
+                    to="/signin"
+                  >
+                    Войти
+                  </NavLink>
+                </li>
+              )}
             </div>
           </div>
         </ul>

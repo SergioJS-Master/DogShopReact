@@ -10,6 +10,7 @@ import { createFormSignUpValidator } from './validator'
 import styleSignUp from './Signup.module.css'
 import logoHeaderTwo from '../../Img/logoTwo.png'
 import { dogShopApi } from '../../../api/DogShopApi'
+import { Loader } from '../../Loader/Loader'
 
 const initialValues = {
   email: '',
@@ -18,9 +19,7 @@ const initialValues = {
 }
 
 export function SignUp() {
-  const [open, setOpen] = useState('password')
-  const [close, setClose] = useState('text')
-  console.log(setClose, close)
+  const [isOpen, setOpen] = useState(false)
 
   const navigate = useNavigate()
 
@@ -30,6 +29,10 @@ export function SignUp() {
   const submitHandler = async (values) => {
     await mutateAsync(values)
     navigate('/sign')
+  }
+
+  if (isLoading) {
+    return <Loader />
   }
 
   return (
@@ -54,11 +57,11 @@ export function SignUp() {
                 <Field
                   name="password"
                   placeholder="Придумайте пароль"
-                  type={[open]}
+                  type={isOpen ? 'text' : 'password'}
                 />
                 <label>
                   <input
-                    onClick={() => setOpen('text')}
+                    onClick={() => setOpen(!isOpen)}
                     type="checkbox"
                     className="password-checkbox"
                   />
@@ -66,7 +69,6 @@ export function SignUp() {
                   Показать пароль
                 </label>
                 <ErrorMessage name="password" />
-
                 <button disabled={isLoading} type="submit">Зарегистрироваться</button>
               </Form>
             </div>

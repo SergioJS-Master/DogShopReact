@@ -9,10 +9,24 @@ export function ProductOne({
         <div className={productsStyles.productImg}>
           <img src={pictures} alt="" />
         </div>
-        <p>{price}</p>
-        <p>{discount}</p>
-        <p>{stock}</p>
-        <p className={productsStyles.descriptionCardPorduct}>{description}</p>
+        <p>
+          <span>Цена: </span>
+          {price}
+          {' '}
+          <span>₽</span>
+        </p>
+        <p>
+          <span>Скидка: </span>
+          {discount}
+        </p>
+        <p>
+          <span>Количество: </span>
+          {stock}
+        </p>
+        <p className={productsStyles.descriptionCardPorduct}>
+          <span>Описание: </span>
+          {description}
+        </p>
         <div className={productsStyles.styleButtonCardProduct}>
           <button type="submit">В корзину</button>
           <button type="submit">Купить</button>

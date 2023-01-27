@@ -1,5 +1,9 @@
+/* eslint-disable import/no-duplicates */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { createContext, useEffect, useState } from 'react'
+
+import {
+  createContext, useEffect, useState, useCallback,
+} from 'react'
 import { dogShopApi } from '../api/DogShopApi'
 
 export const DogsShopContext = createContext()
@@ -20,5 +24,11 @@ export function DogsShopProviderContext({ children }) {
     dogShopApi.setToken(token)
   }, [token])
 
-  return <DogsShopContext.Provider value={{ token, setToken }}>{children}</DogsShopContext.Provider>
+  const deleteToken = useCallback(() => setToken(''), [setToken])
+
+  return (
+    <DogsShopContext.Provider value={{ token, setToken, deleteToken }}>
+      {children}
+    </DogsShopContext.Provider>
+  )
 }

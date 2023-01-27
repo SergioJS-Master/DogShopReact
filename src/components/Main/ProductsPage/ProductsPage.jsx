@@ -35,7 +35,7 @@ export function ProductsPage() {
   }
 
   if (isLoading) {
-    return <p><Loader /></p>
+    return <Loader />
   }
 
   if (data === undefined) {
