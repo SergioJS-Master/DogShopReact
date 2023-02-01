@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.c5768cda.css",
-    "main.js": "./static/js/main.0445b42a.js",
+    "main.css": "./static/css/main.652aa8f4.css",
+    "main.js": "./static/js/main.037cfd40.js",
     "static/media/fonSignUp.jpg": "./static/media/fonSignUp.8ad1277488d29a4a0559.jpg",
     "static/media/logoSignIn.jpg": "./static/media/logoSignIn.d443c27d5cbe2ecb4881.jpg",
     "static/media/fonMainDog.jpg": "./static/media/fonMainDog.caaab13f0c9a21ac9d2e.jpg",
     "static/media/logoOne.png": "./static/media/logoOne.1ca7d2cd477dd0a928cf.png",
     "static/media/logoTwo.png": "./static/media/logoTwo.3176d10ba727bb4882e9.png",
     "index.html": "./index.html",
-    "main.c5768cda.css.map": "./static/css/main.c5768cda.css.map",
-    "main.0445b42a.js.map": "./static/js/main.0445b42a.js.map"
+    "main.652aa8f4.css.map": "./static/css/main.652aa8f4.css.map",
+    "main.037cfd40.js.map": "./static/js/main.037cfd40.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5768cda.css",
-    "static/js/main.0445b42a.js"
+    "static/css/main.652aa8f4.css",
+    "static/js/main.037cfd40.js"
   ]
 }

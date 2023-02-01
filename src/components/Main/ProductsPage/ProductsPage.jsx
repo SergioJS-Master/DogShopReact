@@ -6,7 +6,19 @@ import productPageStyles from './ProductsPage.module.css'
 import { DogsShopContext } from '../../../Contexts/Contexts'
 import { ProductOne } from '../Products/ProductsOne'
 import { dogShopApi } from '../../../api/DogShopApi'
-import { Loader } from '../../Loader/Loader'
+import { withQuery } from '../../HOCs/withQuery'
+
+function ShowAllProductsDetail({ data }) {
+  return (
+    <div className={productPageStyles.productsContainer}>
+      {data.products.map(({ _id: id, ...restProduct }) => (
+        <ProductOne {...restProduct} id={id} key={id} />
+      ))}
+    </div>
+  )
+}
+
+const ShowAllProductsDetailWithQuery = withQuery(ShowAllProductsDetail)
 
 export function ProductsPage() {
   const { token } = useContext(DogsShopContext)
@@ -18,36 +30,19 @@ export function ProductsPage() {
     }
   }, [token])
 
-  const { data, error, isLoading } = useQuery({
+  const {
+    data, error, isLoading, refetch,
+  } = useQuery({
     queryKey: ['productsList'],
     queryFn: () => dogShopApi.getShowAllProducts(),
     enabled: token !== undefined,
   })
-
-  if (error) {
-    return (
-      <p>
-        Произошла ошибка:
-        {' '}
-        {error.message}
-      </p>
-    )
-  }
-
-  if (isLoading) {
-    return <Loader />
-  }
-
-  if (data === undefined) {
-    return <p>Empty content</p>
-  }
-
   return (
-
-    <div className={productPageStyles.productsContainer}>
-      {data.products.map(({ _id: id, ...restProduct }) => (
-        <ProductOne {...restProduct} id={id} key={id} />
-      ))}
-    </div>
+    <ShowAllProductsDetailWithQuery
+      data={data}
+      error={error}
+      isLoading={isLoading}
+      refetch={refetch}
+    />
   )
 }

@@ -28,7 +28,7 @@ export function SignUp() {
 
   const submitHandler = async (values) => {
     await mutateAsync(values)
-    navigate('/sign')
+    navigate('/signin')
   }
 
   if (isLoading) {

@@ -42,7 +42,7 @@ export function SignIn() {
   }
 
   return (
-    <div className={styleSignForm.signUpForm}>
+    <div className={styleSignForm.signInForm}>
       <Formik
         initialValues={initialValues}
         validationSchema={createFormSignValidator}

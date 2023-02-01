@@ -5,7 +5,7 @@ export function ProductOne({
 }) {
   return (
     <div className={productsStyles.prodactContainerCard}>
-      <div className={productsStyles.styleForm}>
+      <div className={productsStyles.styleCard}>
         <div className={productsStyles.productImg}>
           <img src={pictures} alt="" />
         </div>

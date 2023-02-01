@@ -2,7 +2,7 @@
     padding: 55px;
 }
 
-.styleForm {
+.styleCard {
     font-family: Georgia, serif;
     padding: 55px;
     border-radius: 6px;
@@ -42,7 +42,7 @@
 }
 
 
-.styleForm button {
+.styleCard button {
     background: #FF8900;
     color: rgb(8, 0, 57);
     text-decoration: none;
@@ -58,7 +58,7 @@
     padding: 15px;
 }
 
-.styleForm button:hover {
+.styleCard button:hover {
     box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
 }
 

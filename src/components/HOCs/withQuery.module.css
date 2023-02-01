@@ -1,0 +1,17 @@
+.errorRefetchStyle {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.errorRefetchStyle p {
+    text-align: center;
+    font-family: Georgia, serif;
+}
+
+.buttonRefetch {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 450px;
+    margin-right: 450px;
+}

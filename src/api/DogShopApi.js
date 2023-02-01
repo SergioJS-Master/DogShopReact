@@ -48,7 +48,6 @@ class DogShopApi {
         authorization: this.getAuthorizationHandler(),
       },
     })
-
     return res.json()
   }
 }
