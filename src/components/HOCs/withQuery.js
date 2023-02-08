@@ -1,6 +1,11 @@
 /* eslint-disable func-names */
+// import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Loader } from '../Loader/Loader'
 import withQueryStyles from './withQuery.module.css'
+// import { DogsShopContext } from '../../Contexts/Contexts'
+
+// const token = useContext(DogsShopContext)
 
 export const withQuery = (WrappedComponent) => function ({
   error, isLoading, refetch, ...rest
@@ -13,13 +18,19 @@ export const withQuery = (WrappedComponent) => function ({
           {' '}
           {error.message}
         </p>
-        <button
-          onClick={refetch}
-          type="button"
-          className={withQueryStyles.buttonRefetch}
-        >
-          Отправить новый запрос
-        </button>
+        <div className={withQueryStyles.buttonRefetchPosition}>
+          <li>
+            <NavLink to="/signin">
+              <button
+                onClick={refetch}
+                type="button"
+                className={withQueryStyles.buttonRefetch}
+              >
+                Перейти в раздел авторизации
+              </button>
+            </NavLink>
+          </li>
+        </div>
       </div>
     )
   }
@@ -27,5 +38,8 @@ export const withQuery = (WrappedComponent) => function ({
   if (isLoading) {
     return <Loader />
   }
+  // if (token === '') {
+  //   return <p>Авторзуйтесь  систему для просмотра каталога</p>
+  // }
   return <WrappedComponent {...rest} />
 }

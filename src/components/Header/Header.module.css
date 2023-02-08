@@ -13,6 +13,24 @@
 
 }
 
+.header input {
+    width: 300px;
+    outline: none;
+    border-radius: 6px;
+    padding: 15px;
+    margin: -5px;
+    border: 1px solid #aaa;
+    font-family: Georgia, serif;
+}
+
+.searchStyle {
+    width: auto;
+    text-align: center;
+    margin-right: 300px;
+    /* display: flex;
+    justify-content: center; */
+}
+
 ul {
     display: flex;
     justify-content: space-between;
@@ -50,10 +68,10 @@ ul {
 }
 
 .headerLogoLink img {
-    height: 260px;
-    width: 445px;
+    height: 150px;
+    width: 420px;
     position: absolute;
-    top: -85px;
+    top: -21px;
     right: -345px;
     align-items: center;
     z-index: 9999;

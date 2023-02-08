@@ -5,12 +5,15 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Provider } from "react-redux"
 import App from './App'
 import { SignUp } from './components/Header/Signup/Signup'
-import { SignIn } from './components/Header/Sign/Signin'
+import { SignIn } from './components/Header/Signin/Signin'
 import { Main } from './components/Main/Main'
 import { DogsShopProviderContext } from './Contexts/Contexts'
 import { ProductsPage } from './components/Main/ProductsPage/ProductsPage'
+import { store } from './redux/store'
+import { Basket } from './components/Basket/Basket'
 
 const router = createBrowserRouter(
   [
@@ -34,20 +37,32 @@ const router = createBrowserRouter(
           path: 'products',
           element: <ProductsPage />,
         },
+        {
+          path: 'basket',
+          element: <Basket />,
+        },
       ],
     },
   ],
   { basename: '/DogShopReact/' },
 )
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <DogsShopProviderContext>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
       </DogsShopProviderContext>
     </QueryClientProvider>
   </React.StrictMode>,

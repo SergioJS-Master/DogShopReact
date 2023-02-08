@@ -25,9 +25,8 @@ export function SignIn() {
   const { setToken } = useContext(DogsShopContext)
 
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: (values) => dogShopApi.signin(values).then((data) => {
-      setToken(data.token)
-    }),
+    mutationFn: (values) => dogShopApi.signin(values)
+      .then((data) => { setToken(data.token) }),
   })
 
   const submitHandler = async (values) => {

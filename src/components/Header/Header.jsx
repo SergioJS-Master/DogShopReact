@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import headerStyle from './Header.module.css'
 import logoHeaderOne from '../Img/logoOne.png'
 import { DogsShopContext } from '../../Contexts/Contexts'
+import { Search } from './Search/Search'
 
 export function Header() {
   const { deleteToken, token } = useContext(DogsShopContext)
@@ -28,6 +29,22 @@ export function Header() {
             </div>
           </div>
           <div className={headerStyle.liHeaderSignInfoBtn}>
+            <div className={headerStyle.searchStyle}>
+              <div>
+                <li>
+                  <NavLink to="/products">
+                    <Search />
+                  </NavLink>
+                </li>
+              </div>
+            </div>
+            <div>
+              <li>
+                <NavLink to="/basket">
+                  <i className="fa-solid fa-basket-shopping" />
+                </NavLink>
+              </li>
+            </div>
             <div>
               <li>
                 <NavLink to="/signup">Регистрация</NavLink>

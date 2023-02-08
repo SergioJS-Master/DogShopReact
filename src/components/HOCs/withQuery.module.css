@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    list-style: none;
 }
 
 .errorRefetchStyle p {
@@ -10,8 +11,21 @@
 }
 
 .buttonRefetch {
+    font-family: Georgia, serif;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 450px;
     margin-right: 450px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    list-style: none;
+    padding: 10px;
+    box-shadow: 0px 0px 15px #ff8900;
+    width: 400px;
+    cursor: pointer
+}
+
+.buttonRefetchPosition {
+    display: flex;
+    justify-content: center;
 }
