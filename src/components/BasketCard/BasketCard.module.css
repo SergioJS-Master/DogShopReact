@@ -1,0 +1,97 @@
+.basketCard {
+    height: 300px;
+    width: 800px;
+    /* min-width: auto; */
+    background-color: rgb(255, 255, 255);
+    margin: 40px;
+    padding: 20px;
+    border: 2px solid rgb(8, 0, 57);
+    border-radius: 6px;
+    display: flex;
+    box-shadow: 0px 0px 10px rgb(8, 0, 57);
+    position: relative;
+}
+
+.basketCard img {
+    height: 300px;
+    width: 250px;
+    margin-right: 40px;
+    border-radius: 6px;
+}
+
+.basketCard p {
+    font-size: 16px;
+    font-family: Georgia, serif;
+}
+
+.basketCard button {
+    background: #c10000;
+    color: rgb(8, 0, 57);
+    text-decoration: none;
+    border-radius: 6px;
+    display: block;
+    width: auto;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    padding: 10px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    top: 76%;
+    left: 93%;
+}
+
+.basketCard button:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
+}
+
+.checkboxAllCard {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox:checked+.fake::before {
+    opacity: 1;
+}
+
+.fake {
+    display: inline-block;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #FF8900;
+    border-radius: 6px;
+    position: relative;
+
+}
+
+.fake::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    opacity: 0;
+    transition: .2s;
+    background-color: #FF8900;
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.text {
+    margin-left: 5px;
+}

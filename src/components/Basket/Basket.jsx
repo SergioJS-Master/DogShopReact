@@ -1,18 +1,20 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-shadow */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
-// import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { dogShopApi } from '../../api/DogShopApi'
 import { DogsShopContext } from '../../Contexts/Contexts'
 import { getBasketSelector } from '../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
-// import { useContext } from 'react'
 import { Loader } from '../Loader/Loader'
-// import basketPorductCardStyles from './Basket.module.css'
+import basketPorductCardStyles from './Basket.module.css'
 
 export function Basket() {
   const token = useContext(DogsShopContext)
@@ -45,12 +47,6 @@ export function Basket() {
     queryKey: ['basket', basket],
     queryFn: () => dogShopApi.getProductsByIds(arrayIdProducts),
   })
-  // console.log('>>>>>>.', { data })
-  // useEffect(() => {
-  //   if (data) {
-  //     dispatch(basketAdd(data))
-  //   }
-  // }, [dispatch, data])
 
   if (error) {
     return (
@@ -88,20 +84,43 @@ export function Basket() {
 
   return (
     <div>
-      <ul>
-        {data.map((item) => (
-          <BasketCard
-            pictures={item.pictures}
-            index={item.index}
-            key={item.key}
-            id={item._id}
-            title={item.name}
-            price={item.price}
-            discount={item.discount}
-            stock={item.stock}
-          />
-        ))}
-      </ul>
+      <h1>Корзина</h1>
+      <div className={basketPorductCardStyles.basketBlock}>
+        <div className={basketPorductCardStyles.basketCheckboxLine}>
+          <div className={basketPorductCardStyles.checkboxAllCard}>
+            <label className={basketPorductCardStyles.label}>
+              <input type="checkbox" className={basketPorductCardStyles.checkbox} />
+              <span className={basketPorductCardStyles.fake} />
+              <span className={basketPorductCardStyles.text}> - Выбрать все товары</span>
+            </label>
+          </div>
+          <div>
+            <span>Удалить все товары: </span>
+            <button className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
+          </div>
+        </div>
+        <div className={basketPorductCardStyles.basketBackgroudLine}>
+          <div className={basketPorductCardStyles.groupCardProductPrice}>
+            <div>
+              {data.map((item) => (
+                <BasketCard
+                  pictures={item.pictures}
+                  index={item.index}
+                  key={item.key}
+                  id={item._id}
+                  title={item.name}
+                  price={item.price}
+                  discount={item.discount}
+                  stock={item.stock}
+                />
+              ))}
+            </div>
+            <div className={basketPorductCardStyles.priceBlock}>
+              <h3>Цена</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

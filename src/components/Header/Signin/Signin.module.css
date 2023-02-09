@@ -24,7 +24,7 @@
 
 .styleForm Form {
     background-color: rgba(8, 0, 73, .5);
-    border: 1px solid rgb(8, 0, 57);
+    border: 10px solid rgb(8, 0, 57);
     font-family: Georgia, serif;
     display: grid;
     padding: 100px;

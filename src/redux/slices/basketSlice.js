@@ -14,12 +14,12 @@ const basketSlice = createSlice({
       }
       state.push(product)
     },
-    basketReove(state, actions) {
-      state = actions.payload
+    basketRemove(state, actions) {
+      return state.filter((item) => item.id !== actions.payload)
     },
   },
 })
 
-export const { basketAdd, basketReove } = basketSlice.actions
+export const { basketAdd, basketRemove } = basketSlice.actions
 export const getBasketSelector = (state) => state.basket
 export const basketReducer = basketSlice.reducer

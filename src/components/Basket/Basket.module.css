@@ -1,94 +1,117 @@
-.prodactContainerCard {
-    padding: 55px;
-}
-
-.styleCard {
-    font-family: Georgia, serif;
-    padding: 55px;
-    border-radius: 6px;
-    border-width: 8px;
-    height: 630px;
-    border: 2px solid rgb(8, 0, 57);
-    border-radius: 6px;
-    box-shadow: 0px 0px 15px rgb(8, 0, 57);
+.basketBlock {
+    margin-top: 0;
+    padding: 80px;
+    padding-top: 20px;
+    background-color: rgb(255, 255, 255);
+    /* display: flex;
+    justify-content: center; */
+    /* flex-direction: row-reverse */
     display: grid;
+    justify-content: center;
+    font-family: Georgia, serif;
 }
 
-.descriptionCardPorduct {
-    width: 255px;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    height: 60px;
+.basketBackgroudLine {
+    border: 3px solid rgb(8, 0, 57);
+    border-radius: 6px;
+    width: auto;
+    min-width: 1200px;
+    max-width: 1550px;
+    box-shadow: 0px 0px 20px rgb(8, 0, 57);
 }
 
-.descriptionCardPorduct::-webkit-scrollbar {
-    width: 10px;
-    /* ширина scrollbar */
+.basketCheckboxLine {
+    min-width: 1200px;
+    max-width: 1550px;
+    height: 50px;
+    background-color: white;
+    border: 3px solid rgb(8, 0, 57);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.descriptionCardPorduct::-webkit-scrollbar-track {
-    background: #FF8900;
-    /* цвет дорожки */
-    border-radius: 4px;
+.priceBlock {
+    height: 350px;
+    background-color: white;
+    border: 3px solid rgb(8, 0, 57);
+    border-radius: 6px;
+    padding: 10px;
+    margin: 40px;
+    width: 350px;
+    min-width: 100px;
+    position: sticky;
+    box-shadow: 0px 0px 10px rgb(8, 0, 57);
 }
 
-.descriptionCardPorduct::-webkit-scrollbar-thumb {
-    background-color: rgb(8, 0, 57);
-    /* цвет плашки */
-    border-radius: 4px;
-    /* закругления плашки */
-    border: 1.5px solid #FF8900;
-    /* padding вокруг плашки */
+.groupCardProductPrice {
+    display: flex;
 }
 
-
-.styleCard button {
-    background: #FF8900;
+.deleteButton {
+    background: #c10000;
     color: rgb(8, 0, 57);
     text-decoration: none;
     border-radius: 6px;
-    display: block;
     width: auto;
     text-align: center;
     font-weight: 600;
-    margin: 20px auto;
     padding: 10px 10px;
     transition: all 0.3s;
     cursor: pointer;
     padding: 15px;
 }
 
-.styleCard button:hover {
+.deleteButton:hover {
     box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
 }
 
-.imgProdact {
-    width: 70px;
-    height: 90px;
+.checkboxAllCard {
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
-.productImg img {
-    width: 250px;
-    max-height: 320px;
-}
-
-.styleButtonCardProduct {
+.label {
     display: flex;
+    align-items: center;
 }
 
-p {
-    padding: -20px;
+.checkbox {
+    display: none;
 }
 
-p span {
-    color: rgb(8, 0, 57);
-    font-weight: 800;
+.checkbox:checked+.fake::before {
+    opacity: 1;
 }
 
-.headingStyles {
-    width: 270px;
-    text-align: center;
-    margin-top: -30px;
+.fake {
+    display: inline-block;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #FF8900;
+    border-radius: 6px;
+    position: relative;
+
+}
+
+.fake::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    opacity: 0;
+    transition: .2s;
+    background-color: #FF8900;
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.text {
+    margin-left: 5px;
 }
