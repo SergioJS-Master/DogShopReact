@@ -1,13 +1,16 @@
 /* eslint-disable linebreak-style */
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import headerStyle from './Header.module.css'
 import logoHeaderOne from '../Img/logoOne.png'
 import { DogsShopContext } from '../../Contexts/Contexts'
 import { Search } from './Search/Search'
+import { getBasketSelector } from '../../redux/slices/basketSlice'
 
 export function Header() {
   const { deleteToken, token } = useContext(DogsShopContext)
+  const arrProductInBasket = useSelector(getBasketSelector)
   return (
     <header className={headerStyle.header}>
       <nav>
@@ -38,11 +41,14 @@ export function Header() {
                 </li>
               </div>
             </div>
-            <div>
+            <div className={headerStyle.basketButtonStyle}>
               <li>
                 <NavLink to="/basket">
                   <i className="fa-solid fa-basket-shopping" />
                 </NavLink>
+                <div className={headerStyle.basketProductLength}>
+                  {arrProductInBasket.length > 0 && <p>{arrProductInBasket.length}</p>}
+                </div>
               </li>
             </div>
             <div>

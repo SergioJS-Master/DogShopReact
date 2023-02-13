@@ -11,18 +11,39 @@ import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { dogShopApi } from '../../api/DogShopApi'
 import { DogsShopContext } from '../../Contexts/Contexts'
-import { getBasketSelector } from '../../redux/slices/basketSlice'
+import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
 import { Loader } from '../Loader/Loader'
 import basketPorductCardStyles from './Basket.module.css'
 
 export function Basket() {
-  const token = useContext(DogsShopContext)
+  const { token } = useContext(DogsShopContext)
   const dispatch = useDispatch()
+
   const basket = useSelector(getBasketSelector)
   const arrayIdProducts = basket.map((item) => item.id)
 
-  console.log(dispatch)
+  const changeInputAllCar = basket.every((item) => item.isChecked)
+  const checkedOne = basket.some((item) => item.isChecked)
+
+  // console.log({ basket })
+  console.log({ checkedOne })
+  // console.log({ arrayIdProducts })
+  function basketButtonDeleteProductCheckbox() {
+    dispatch(basketCheckboxRemove())
+  }
+
+  function changeInputAll(e) {
+    dispatch(basketIsCheckedAllCards(e.target.checked))
+  }
+
+  function chooseAll() {
+    dispatch(basketIsCheckedAllCards(true))
+  }
+
+  // function isCheckedCardAll() {
+  //   dispatch(basketIsCheckedAllCard(true))
+  // }
 
   // function getProductsById(arrayIdProducts) {
   //   return Promise.all(
@@ -42,7 +63,9 @@ export function Basket() {
   // })
   // console.log('>>>>>', data)
 
-  const { data, isLoading, error } = useQuery({
+  const {
+    data, isLoading, error, refetch,
+  } = useQuery({
     enabled: token !== '',
     queryKey: ['basket', basket],
     queryFn: () => dogShopApi.getProductsByIds(arrayIdProducts),
@@ -89,14 +112,20 @@ export function Basket() {
         <div className={basketPorductCardStyles.basketCheckboxLine}>
           <div className={basketPorductCardStyles.checkboxAllCard}>
             <label className={basketPorductCardStyles.label}>
-              <input type="checkbox" className={basketPorductCardStyles.checkbox} />
+              <input
+                type="checkbox"
+                className={basketPorductCardStyles.checkbox}
+                onChange={changeInputAll}
+                checked={changeInputAllCar}
+                onClick={chooseAll}
+              />
               <span className={basketPorductCardStyles.fake} />
               <span className={basketPorductCardStyles.text}> - Выбрать все товары</span>
             </label>
           </div>
           <div>
             <span>Удалить все товары: </span>
-            <button className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
+            <button onClick={basketButtonDeleteProductCheckbox} className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
           </div>
         </div>
         <div className={basketPorductCardStyles.basketBackgroudLine}>
@@ -106,7 +135,7 @@ export function Basket() {
                 <BasketCard
                   pictures={item.pictures}
                   index={item.index}
-                  key={item.key}
+                  key={item._id}
                   id={item._id}
                   title={item.name}
                   price={item.price}
@@ -116,7 +145,11 @@ export function Basket() {
               ))}
             </div>
             <div className={basketPorductCardStyles.priceBlock}>
-              <h3>Цена</h3>
+              <h3>Итог: скидка/цена</h3>
+              <p>...</p>
+              <button>
+                Оформить заказ
+              </button>
             </div>
           </div>
         </div>

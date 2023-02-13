@@ -17,7 +17,7 @@
     width: auto;
     min-width: 1200px;
     max-width: 1550px;
-    box-shadow: 0px 0px 20px rgb(8, 0, 57);
+    box-shadow: 0px 0px 10px rgb(8, 0, 57);
 }
 
 .basketCheckboxLine {
@@ -31,6 +31,7 @@
     padding: 5px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 0px 5px rgb(8, 0, 57);
 }
 
 .priceBlock {
@@ -44,6 +45,33 @@
     min-width: 100px;
     position: sticky;
     box-shadow: 0px 0px 10px rgb(8, 0, 57);
+    display: grid;
+    align-content: space-between
+}
+
+.priceBlock h3 {
+    text-align: center;
+}
+
+.priceBlock button {
+    background: #FF8900;
+    color: rgb(8, 0, 57);
+    text-decoration: none;
+    border-radius: 6px;
+    display: block;
+    width: auto;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    padding: 10px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    font-family: Georgia, serif;
+}
+
+.priceBlock button:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
 }
 
 .groupCardProductPrice {
@@ -89,9 +117,10 @@
 .fake {
     display: inline-block;
     align-items: center;
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
     border: 3px solid #FF8900;
+    box-shadow: 0px 0px 5px #b66100;
     border-radius: 6px;
     position: relative;
 
