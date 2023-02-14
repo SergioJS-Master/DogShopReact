@@ -8,8 +8,13 @@
     border: 2px solid rgb(8, 0, 57);
     border-radius: 6px;
     display: flex;
-    box-shadow: 0px 0px 10px rgb(8, 0, 57);
+    box-shadow: 0px 0px 5px #b66100;
     position: relative;
+    transition: ease-in 0.2s;
+}
+
+.basketCard:hover {
+    box-shadow: 0px 0px 15px #FF8900;
 }
 
 .basketCard img {

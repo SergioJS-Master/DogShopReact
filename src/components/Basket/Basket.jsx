@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -9,12 +11,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { dogShopApi } from '../../api/DogShopApi'
 import { DogsShopContext } from '../../Contexts/Contexts'
 import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
 import { Loader } from '../Loader/Loader'
 import basketPorductCardStyles from './Basket.module.css'
+import logoTwo from '../Img/logoTwo.png'
 
 export function Basket() {
   const { token } = useContext(DogsShopContext)
@@ -105,55 +109,121 @@ export function Basket() {
     )
   }
 
+  for (let i = 0; i < data.length; i++) {
+    data[i].count = basket[i].count
+    data[i].isChecked = basket[i].isChecked
+  }
+
+  const goodsQuantity = data.filter((e) => e.isChecked === true).reduce((sum, e) => sum + e.count, 0)
+  const totalDiscount = data.filter((e) => e.isChecked === true).reduce((sum, e) => sum + ((e.price * e.discount) / 100) * e.count, 0)
+  const totalPrice = data.filter((e) => e.isChecked === true).reduce((sum, e) => sum + (e.price - (e.price * e.discount) / 100) * e.count, 0)
   return (
     <div>
-      <h1>Корзина</h1>
-      <div className={basketPorductCardStyles.basketBlock}>
-        <div className={basketPorductCardStyles.basketCheckboxLine}>
-          <div className={basketPorductCardStyles.checkboxAllCard}>
-            <label className={basketPorductCardStyles.label}>
-              <input
-                type="checkbox"
-                className={basketPorductCardStyles.checkbox}
-                onChange={changeInputAll}
-                checked={changeInputAllCar}
-                onClick={chooseAll}
-              />
-              <span className={basketPorductCardStyles.fake} />
-              <span className={basketPorductCardStyles.text}> - Выбрать все товары</span>
-            </label>
-          </div>
-          <div>
-            <span>Удалить все товары: </span>
-            <button onClick={basketButtonDeleteProductCheckbox} className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
-          </div>
-        </div>
-        <div className={basketPorductCardStyles.basketBackgroudLine}>
-          <div className={basketPorductCardStyles.groupCardProductPrice}>
+
+      {basket.length === 0 && (
+        <div className={basketPorductCardStyles.basketEmptyBlok}>
+          <div className={basketPorductCardStyles.basketEmpty}>
             <div>
-              {data.map((item) => (
-                <BasketCard
-                  pictures={item.pictures}
-                  index={item.index}
-                  key={item._id}
-                  id={item._id}
-                  title={item.name}
-                  price={item.price}
-                  discount={item.discount}
-                  stock={item.stock}
-                />
-              ))}
+              <img src={logoTwo} alt="лого" />
+              <h3>Корзина пуста</h3>
+              <div>
+                <NavLink to="/products">
+                  <button className="table-empty__button">Перейти в каталог</button>
+                </NavLink>
+              </div>
             </div>
-            <div className={basketPorductCardStyles.priceBlock}>
-              <h3>Итог: скидка/цена</h3>
-              <p>...</p>
-              <button>
-                Оформить заказ
-              </button>
+          </div>
+
+        </div>
+      )}
+
+      {basket.length > 0 && (
+        <div>
+          <div className={basketPorductCardStyles.namePageBasket}>
+            <h1>• Корзина •</h1>
+          </div>
+          <div className={basketPorductCardStyles.basketBlock}>
+            <div className={basketPorductCardStyles.basketCheckboxLine}>
+              <div className={basketPorductCardStyles.checkboxAllCard}>
+                <label className={basketPorductCardStyles.label}>
+                  <input
+                    type="checkbox"
+                    className={basketPorductCardStyles.checkbox}
+                    onChange={changeInputAll}
+                    checked={changeInputAllCar}
+                    onClick={chooseAll}
+                  />
+                  <span className={basketPorductCardStyles.fake} />
+                  <span className={basketPorductCardStyles.text}> - Выбрать все товары</span>
+                </label>
+              </div>
+              <div className={basketPorductCardStyles.buttonDeleteCheckboxHeder}>
+                <span>Удалить все товары: </span>
+                <button onClick={basketButtonDeleteProductCheckbox} className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
+              </div>
+            </div>
+            <div className={basketPorductCardStyles.basketBackgroudLine}>
+              <div className={basketPorductCardStyles.groupCardProductPrice}>
+                <div>
+                  {data.map((item) => (
+                    <BasketCard
+                      pictures={item.pictures}
+                      index={item.index}
+                      key={item._id}
+                      id={item._id}
+                      title={item.name}
+                      price={item.price}
+                      discount={item.discount}
+                      stock={item.stock}
+                    />
+                  ))}
+                </div>
+
+                {!checkedOne && (
+                  <div className={basketPorductCardStyles.priceBlock}>
+                    <h4>Для оформления заказа, необходимо отметить товар в корзине</h4>
+                    <button onClick={chooseAll}>
+                      Выбрать все товары
+                    </button>
+                  </div>
+                )}
+
+                {checkedOne && (
+                  <div className={basketPorductCardStyles.priceBlock}>
+                    <h3>Итог: скидка/цена</h3>
+                    <hr />
+                    <p>
+                      <span>Кол-во товаров: </span>
+                      {goodsQuantity}
+                      <span> шт.</span>
+                    </p>
+                    <hr />
+                    <p>
+                      <span>Общая скидка: </span>
+                      {totalDiscount}
+                      <span> ₽</span>
+                    </p>
+                    <hr />
+                    <p>
+                      <span>
+                        Общая цена с учетом скидки:
+                        {' '}
+                        {totalPrice}
+                      </span>
+                      <span> ₽</span>
+                    </p>
+                    <hr />
+                    <button onClick={chooseAll}>
+                      Оформить заказ
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+
     </div>
   )
 }

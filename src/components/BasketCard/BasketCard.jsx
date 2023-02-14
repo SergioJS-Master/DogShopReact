@@ -63,6 +63,7 @@ export function BasketCard({
             <p>
               <span>Цена за один товар: </span>
               {price}
+              <span> ₽</span>
             </p>
             <p>
               <span>Скидка: </span>

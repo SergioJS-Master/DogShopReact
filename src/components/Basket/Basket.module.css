@@ -3,9 +3,6 @@
     padding: 80px;
     padding-top: 20px;
     background-color: rgb(255, 255, 255);
-    /* display: flex;
-    justify-content: center; */
-    /* flex-direction: row-reverse */
     display: grid;
     justify-content: center;
     font-family: Georgia, serif;
@@ -23,7 +20,7 @@
 .basketCheckboxLine {
     min-width: 1200px;
     max-width: 1550px;
-    height: 50px;
+    height: 60px;
     background-color: white;
     border: 3px solid rgb(8, 0, 57);
     border-radius: 6px;
@@ -32,21 +29,27 @@
     display: flex;
     justify-content: space-between;
     box-shadow: 0px 0px 5px rgb(8, 0, 57);
+    background-color: rgb(8, 0, 57);
 }
 
 .priceBlock {
-    height: 350px;
+    height: 100%;
     background-color: white;
     border: 3px solid rgb(8, 0, 57);
+    box-shadow: 0px 0px 5px #b66100;
     border-radius: 6px;
-    padding: 10px;
+    padding: 20px;
     margin: 40px;
-    width: 350px;
+    width: 450px;
     min-width: 100px;
     position: sticky;
-    box-shadow: 0px 0px 10px rgb(8, 0, 57);
     display: grid;
-    align-content: space-between
+    align-content: space-between;
+    transition: ease-in 0.2s;
+}
+
+.priceBlock:hover {
+    box-shadow: 0px 0px 15px #fd8700;
 }
 
 .priceBlock h3 {
@@ -76,6 +79,8 @@
 
 .groupCardProductPrice {
     display: flex;
+    background-color: rgb(8, 0, 57);
+
 }
 
 .deleteButton {
@@ -97,6 +102,17 @@
 }
 
 .checkboxAllCard {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.buttonDeleteCheckboxHeder {
+    background-color: white;
+    padding: 8px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
 }
@@ -143,4 +159,78 @@
 
 .text {
     margin-left: 5px;
+}
+
+h1 {
+    text-align: center;
+    font-family: Georgia, serif;
+    width: 250px;
+    height: auto;
+    background-color: rgb(8, 0, 57);
+    border-radius: 6px;
+    padding: 15px;
+    color: white;
+    box-shadow: 0px 0px 5px rgb(8, 0, 57);
+    text-decoration: overline;
+}
+
+.namePageBasket {
+    display: flex;
+    justify-content: center;
+}
+
+hr {
+    width: 100%;
+}
+
+.basketEmpty {
+    width: 350px;
+    height: auto;
+    padding: 30px;
+    background-color: rgb(8, 0, 57);
+    box-shadow: 0px 0px 10px #b66100;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 6px;
+    font-family: Georgia, serif;
+}
+
+.basketEmptyBlok {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 30px;
+    text-align: center;
+}
+
+.basketEmpty button {
+    background: #FF8900;
+    color: rgb(8, 0, 57);
+    border-radius: 6px;
+    display: block;
+    width: auto;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    padding: 10px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    font-family: Georgia, serif;
+}
+
+.basketEmpty button:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
+}
+
+.basketEmpty a {
+    text-decoration: none;
+}
+
+.basketEmpty img {
+    height: 90%;
+    width: 90%;
+
 }
