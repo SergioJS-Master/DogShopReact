@@ -9,13 +9,11 @@ import backgroundImageMain from '../Img/fonMainDog.jpg'
 
 export function Main() {
   return (
-    <main className={mainStyle.main}>
-      <div>
-        <img
-          className={mainStyle.mainBackgroundImgStyle}
-          src={backgroundImageMain}
-        />
-      </div>
-    </main>
+    <div className={mainStyle.main}>
+      <img
+        className={mainStyle.mainBackgroundImgStyle}
+        src={backgroundImageMain}
+      />
+    </div>
   )
 }

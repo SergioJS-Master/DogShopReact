@@ -63,12 +63,10 @@ class DogShopApi {
   }
 
   // Запрос на получение продуктов
-  async getShowAllProducts(search) {
-    this.checkToken()
-
+  async getShowAllProducts(search, token) {
     const res = await fetch(`${this.baseUrl}/products?query=${search}`, {
       headers: {
-        authorization: this.getAuthorizationHandler(),
+        authorization: `Bearer ${token}`,
       },
     })
     if (res.status >= 400 && res.status < 500) {
@@ -84,14 +82,24 @@ class DogShopApi {
   }
 
   // Запрос на получение добавление продуктов в корзину
-  async getProductsByIds(ids) {
-    this.checkToken()
+  async getProductsByIds(ids, token) {
+    // this.checkToken()
     return Promise.all(
       ids.map((id) => fetch(`${this.baseUrl}/products/${id}`, {
         headers: {
-          authorization: this.getAuthorizationHandler(),
+          authorization: `Bearer ${token}`,
         },
-      }).then((res) => res.json())),
+      }).then((res) => {
+        if (res.status >= 400 && res.status < 500) {
+          throw new Error(`Произошла ошибка при входе в Личный кабинет. 
+          Проверьте отправляемые данные. Status: ${res.status}`)
+        }
+
+        if (res.status >= 500) {
+          throw new Error(`Произошла ошибка при получении ответа от сервера. 
+          Попробуйте сделать запрос позже. Status: ${res.status}`)
+        }
+      })),
     )
   }
 }

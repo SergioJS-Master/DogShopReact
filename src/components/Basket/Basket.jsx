@@ -9,19 +9,18 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
-import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { dogShopApi } from '../../api/DogShopApi'
-import { DogsShopContext } from '../../Contexts/Contexts'
 import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
 import { Loader } from '../Loader/Loader'
 import basketPorductCardStyles from './Basket.module.css'
 import logoTwo from '../Img/logoTwo.png'
+import { getTokenSelector } from '../../redux/slices/userSlice'
 
 export function Basket() {
-  const { token } = useContext(DogsShopContext)
+  const token = useSelector(getTokenSelector)
   const dispatch = useDispatch()
 
   const basket = useSelector(getBasketSelector)
@@ -30,9 +29,6 @@ export function Basket() {
   const changeInputAllCar = basket.every((item) => item.isChecked)
   const checkedOne = basket.some((item) => item.isChecked)
 
-  // console.log({ basket })
-  console.log({ checkedOne })
-  // console.log({ arrayIdProducts })
   function basketButtonDeleteProductCheckbox() {
     dispatch(basketCheckboxRemove())
   }
@@ -71,8 +67,8 @@ export function Basket() {
     data, isLoading, error, refetch,
   } = useQuery({
     enabled: token !== '',
-    queryKey: ['basket', basket],
-    queryFn: () => dogShopApi.getProductsByIds(arrayIdProducts),
+    queryKey: ['basket', basket, token],
+    queryFn: () => dogShopApi.getProductsByIds(arrayIdProducts, token, basket),
   })
 
   if (error) {
@@ -100,7 +96,18 @@ export function Basket() {
   }
 
   if (data === undefined) {
-    return <Loader />
+    return (
+      <div className={basketPorductCardStyles.errorAutorisationContainer}>
+        <div className={basketPorductCardStyles.errorAutorisationStyle}>
+          <h2>Необходимо авторизоваться для просмотра корзины</h2>
+          <div>
+            <NavLink to="/signin">
+              <button className="table-empty__button">Перейти в раздел авторизации</button>
+            </NavLink>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   if (isLoading) {
@@ -200,7 +207,9 @@ export function Basket() {
                     <hr />
                     <p>
                       <span>Общая скидка: </span>
-                      {totalDiscount}
+                      <span className={basketPorductCardStyles.totalDiscount}>
+                        {totalDiscount}
+                      </span>
                       <span> ₽</span>
                     </p>
                     <hr />
@@ -208,7 +217,9 @@ export function Basket() {
                       <span>
                         Общая цена с учетом скидки:
                         {' '}
-                        {totalPrice}
+                        <span className={basketPorductCardStyles.totalPrice}>
+                          {totalPrice}
+                        </span>
                       </span>
                       <span> ₽</span>
                     </p>
@@ -217,6 +228,10 @@ export function Basket() {
                       Оформить заказ
                     </button>
                   </div>
+                )}
+
+                {!token && (
+                  <p>Необходимо авторизоваться</p>
                 )}
               </div>
             </div>

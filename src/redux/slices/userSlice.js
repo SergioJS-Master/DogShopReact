@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { createSlice } from '@reduxjs/toolkit'
 import { initState } from '../initState'
 
@@ -6,11 +7,21 @@ const userSlice = createSlice({
   initialState: initState.user,
   reducers: {
     userAdd(state, actions) {
-      return console.log(state, actions)
+      return {
+        ...state,
+        _id: actions.payload.data._id,
+        name: actions.payload.data.name,
+        email: actions.payload.data.email,
+        group: actions.payload.data.group,
+        token: actions.payload.token,
+      }
+    },
+    removeUser() {
+      return initState.user
     },
   },
 })
 
-export const { userAdd } = userSlice.actions
+export const { userAdd, removeUser } = userSlice.actions
 export const userReducer = userSlice.reducer
 export const getTokenSelector = (state) => state.user.token

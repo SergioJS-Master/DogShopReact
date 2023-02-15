@@ -1,16 +1,19 @@
 /* eslint-disable linebreak-style */
 import { NavLink } from 'react-router-dom'
-import { useContext } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import headerStyle from './Header.module.css'
 import logoHeaderOne from '../Img/logoOne.png'
-import { DogsShopContext } from '../../Contexts/Contexts'
 import { Search } from './Search/Search'
 import { getBasketSelector } from '../../redux/slices/basketSlice'
+import { getTokenSelector, removeUser } from '../../redux/slices/userSlice'
 
 export function Header() {
-  const { deleteToken, token } = useContext(DogsShopContext)
+  const dispatch = useDispatch()
   const arrProductInBasket = useSelector(getBasketSelector)
+  const token = useSelector(getTokenSelector)
+  const kikUser = () => {
+    dispatch(removeUser())
+  }
   return (
     <header className={headerStyle.header}>
       <nav>
@@ -61,7 +64,7 @@ export function Header() {
                 <li>
                   <NavLink
                     to="/signin"
-                    onClick={deleteToken}
+                    onClick={kikUser}
                   >
                     Выйти
                   </NavLink>

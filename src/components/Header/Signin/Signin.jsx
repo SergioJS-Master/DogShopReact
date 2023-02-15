@@ -6,12 +6,14 @@ import {
 } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { createFormSignValidator } from './validatorsign'
 import styleSignForm from './Signin.module.css'
-import { DogsShopContext } from '../../../Contexts/Contexts'
+// import { DogsShopContext } from '../../../Contexts/Contexts'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { Loader } from '../../Loader/Loader'
+import { userAdd } from '../../../redux/slices/userSlice'
 
 const initialValues = {
   email: '',
@@ -20,13 +22,17 @@ const initialValues = {
 
 export function SignIn() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const [isOpen, setOpen] = useState(false)
 
-  const { setToken } = useContext(DogsShopContext)
+  // const { setToken } = useContext(DogsShopContext)
 
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: (values) => dogShopApi.signin(values)
-      .then((data) => { setToken(data.token) }),
+      .then((data) => {
+        dispatch(userAdd(data))
+      }),
   })
 
   const submitHandler = async (values) => {

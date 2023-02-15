@@ -1,11 +1,45 @@
 /* eslint-disable linebreak-style */
-
+import logoTwo from '../Img/logoTwo.png'
 import footerStyles from './Footer.module.css'
 
 export function Footer() {
   return (
-    <div className={footerStyles.footer}>
-      <h1>Footer</h1>
+    <div className={footerStyles.footerContainer}>
+      <img src={logoTwo} alt="logo" />
+      <div className={footerStyles.footerGroup}>
+        <h2>Бренды</h2>
+        <p>PRO PLAN</p>
+        <p>Monge</p>
+        <p>Welldog</p>
+        <p>ROYAL CANIN</p>
+        <p>Abba</p>
+      </div>
+      <div className={footerStyles.footerGroup}>
+        <h2>Контакты</h2>
+        <p>
+          Instagram
+          {' '}
+          <i className="fa-brands fa-instagram" />
+        </p>
+        <p>
+          Whatsapp
+          {' '}
+          <i className="fa-brands fa-whatsapp" />
+        </p>
+        <p>
+          Telegram
+          {' '}
+          <i className="fa-brands fa-telegram" />
+        </p>
+        <p>8-800-555-35-35</p>
+      </div>
+      <div className={footerStyles.footerGroup}>
+        <h2>Адрес</h2>
+        <p>г. Росто-на-Дону</p>
+        <p>ул. Пушкина, д. 1</p>
+        <p>Режим работы:</p>
+        <p>09:00-21:00(МСК)</p>
+      </div>
     </div>
   )
 }

@@ -24,7 +24,9 @@ export function SignUp() {
   const navigate = useNavigate()
 
   // eslint-disable-next-line max-len
-  const { mutateAsync, isLoading } = useMutation({ mutationFn: (values) => dogShopApi.signUp(values) })
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: (values) => dogShopApi.signUp(values),
+  })
 
   const submitHandler = async (values) => {
     await mutateAsync(values)

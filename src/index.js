@@ -10,7 +10,6 @@ import App from './App'
 import { SignUp } from './components/Header/Signup/Signup'
 import { SignIn } from './components/Header/Signin/Signin'
 import { Main } from './components/Main/Main'
-import { DogsShopProviderContext } from './Contexts/Contexts'
 import { ProductsPage } from './components/Main/ProductsPage/ProductsPage'
 import { store } from './redux/store'
 import { Basket } from './components/Basket/Basket'
@@ -59,11 +58,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <DogsShopProviderContext>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-        </Provider>
-      </DogsShopProviderContext>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>,
 )
