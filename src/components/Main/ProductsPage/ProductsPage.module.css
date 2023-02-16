@@ -15,3 +15,22 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.searchZeroErrorBlock {
+    display: flex;
+    justify-content: center;
+    font-family: Georgia, serif;
+    height: 200px;
+    margin: 200px;
+}
+
+.searchZeroError {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 350px;
+    background-color: rgb(8, 0, 57);
+    color: white;
+    border-radius: 6px;
+}

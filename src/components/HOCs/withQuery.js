@@ -8,7 +8,7 @@ import withQueryStyles from './withQuery.module.css'
 // const token = useContext(DogsShopContext)
 
 export const withQuery = (WrappedComponent) => function ({
-  error, isLoading, token, refetch, ...rest
+  error, isError, isLoading, token, refetch, ...rest
 }) {
   if (error) {
     return (

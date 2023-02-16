@@ -1,19 +1,31 @@
 /* eslint-disable consistent-return */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { changeSearchFilter } from '../../../redux/slices/filterSlice'
+import { useDebounce } from '../../hooks/useDebounce'
 
 export function Search() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [search, setSearch] = useState(() => {
+    const searchValueFromQuery = searchParams.get('q ')
+    return searchValueFromQuery ?? ''
+  })
   const dispatch = useDispatch()
-  const [search, setSearch] = useState('')
 
+  const debouncedSearchValue = useDebounce(search, 600)
   const changeSearchHandler = (e) => {
     const newSearchValue = e.target.value
-
     setSearch(newSearchValue)
-
-    dispatch(changeSearchFilter(newSearchValue))
+    setSearchParams({
+      ...Object.fromEntries(searchParams.entries()),
+      q: newSearchValue,
+    })
   }
+
+  useEffect(() => {
+    dispatch(changeSearchFilter(debouncedSearchValue))
+  }, [debouncedSearchValue, dispatch])
 
   return (
     <input

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -12,10 +13,24 @@ import { getTokenSelector } from '../../../redux/slices/userSlice'
 
 function ShowAllProductsDetail({ data }) {
   return (
-    <div className={productPageStyles.productsContainer}>
-      {data.products.map(({ _id: id, ...restProduct }) => (
-        <ProductOne {...restProduct} id={id} key={id} />
-      ))}
+    <div>
+
+      <div className={productPageStyles.productsContainer}>
+        {data.products.map(({ _id: id, ...restProduct }) => (
+          <ProductOne {...restProduct} id={id} key={id} />
+        ))}
+      </div>
+
+      {!data[0] && data && (
+      <div className={productPageStyles.searchZeroErrorBlock}>
+        <div className={productPageStyles.searchZeroError}>
+          <p>
+            По вашему запросу ничего не найдено
+          </p>
+        </div>
+      </div>
+      )}
+
     </div>
   )
 }
@@ -24,10 +39,9 @@ const ShowAllProductsDetailWithQuery = withQuery(ShowAllProductsDetail)
 
 export function ProductsPage() {
   const navigate = useNavigate()
-  const token = useSelector(getTokenSelector)
   const search = useSelector(getSearchSelector)
-
-  console.log({ token })
+  const token = useSelector(getTokenSelector)
+  // const search = useSelector(getSearchSelector)
 
   useEffect(() => {
     if (!token) {
@@ -42,6 +56,7 @@ export function ProductsPage() {
     queryFn: () => dogShopApi.getShowAllProducts(search, token),
     // enabled: token !== undefined,
   })
+
   return (
     <ShowAllProductsDetailWithQuery
       data={data}

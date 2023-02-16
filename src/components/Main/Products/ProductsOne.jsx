@@ -14,7 +14,6 @@ export function ProductOne({
   const arrayProducts = useSelector(getBasketSelector)
   const oneProduct = arrayProducts.some((item) => item.id === id)
 
-  console.log(oneProduct)
   function AddProductsBasket() {
     dispatch(basketAdd(id))
   }

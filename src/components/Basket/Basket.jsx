@@ -132,7 +132,7 @@ export function Basket() {
           <div className={basketPorductCardStyles.basketEmpty}>
             <div>
               <img src={logoTwo} alt="лого" />
-              <h3>Корзина пуста</h3>
+              <h3>В корзине пусто</h3>
               <div>
                 <NavLink to="/products">
                   <button className="table-empty__button">Перейти в каталог</button>
@@ -140,7 +140,6 @@ export function Basket() {
               </div>
             </div>
           </div>
-
         </div>
       )}
 

@@ -43,7 +43,7 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  { basename: '/DogShopReact/' },
+  // { basename: '/DogShopReact/' },
 )
 
 const queryClient = new QueryClient({
