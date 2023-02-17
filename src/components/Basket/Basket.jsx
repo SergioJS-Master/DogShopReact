@@ -24,7 +24,7 @@ export function Basket() {
   const dispatch = useDispatch()
 
   const basket = useSelector(getBasketSelector)
-  const arrayIdProducts = basket.map((item) => item.id)
+  const ids = basket.map((item) => item.id)
 
   const changeInputAllCar = basket.every((item) => item.isChecked)
   const checkedOne = basket.some((item) => item.isChecked)
@@ -40,7 +40,6 @@ export function Basket() {
   function chooseAll() {
     dispatch(basketIsCheckedAllCards(true))
   }
-
   // function isCheckedCardAll() {
   //   dispatch(basketIsCheckedAllCard(true))
   // }
@@ -66,9 +65,8 @@ export function Basket() {
   const {
     data, isLoading, error, refetch,
   } = useQuery({
-    enabled: token !== '',
-    queryKey: ['basket', basket, token],
-    queryFn: () => dogShopApi.getProductsByIds(arrayIdProducts, token, basket),
+    queryKey: ['basket', basket],
+    queryFn: () => dogShopApi.getProductsByIds(ids, token),
   })
 
   if (error) {
@@ -95,20 +93,20 @@ export function Basket() {
     )
   }
 
-  if (data === undefined) {
-    return (
-      <div className={basketPorductCardStyles.errorAutorisationContainer}>
-        <div className={basketPorductCardStyles.errorAutorisationStyle}>
-          <h2>Необходимо авторизоваться для просмотра корзины</h2>
-          <div>
-            <NavLink to="/signin">
-              <button className="table-empty__button">Перейти в раздел авторизации</button>
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  // if (data === undefined) {
+  //   return (
+  //     <div className={basketPorductCardStyles.errorAutorisationContainer}>
+  //       <div className={basketPorductCardStyles.errorAutorisationStyle}>
+  //         <h2>Необходимо авторизоваться для просмотра корзины</h2>
+  //         <div>
+  //           <NavLink to="/signin">
+  //             <button className="table-empty__button">Перейти в раздел авторизации</button>
+  //           </NavLink>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   if (isLoading) {
     return (

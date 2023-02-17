@@ -83,23 +83,12 @@ class DogShopApi {
 
   // Запрос на получение добавление продуктов в корзину
   async getProductsByIds(ids, token) {
-    // this.checkToken()
     return Promise.all(
       ids.map((id) => fetch(`${this.baseUrl}/products/${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
-      }).then((res) => {
-        if (res.status >= 400 && res.status < 500) {
-          throw new Error(`Произошла ошибка при входе в Личный кабинет. 
-          Проверьте отправляемые данные. Status: ${res.status}`)
-        }
-
-        if (res.status >= 500) {
-          throw new Error(`Произошла ошибка при получении ответа от сервера. 
-          Попробуйте сделать запрос позже. Status: ${res.status}`)
-        }
-      })),
+      }).then((res) => res.json())),
     )
   }
 }
