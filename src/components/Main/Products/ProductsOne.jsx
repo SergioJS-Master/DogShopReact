@@ -6,16 +6,23 @@
 import { useDispatch, useSelector } from 'react-redux'
 import productsStyles from './Products.module.css'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
+import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
 
 export function ProductOne({
   pictures, discount, stock, price, description, name, id,
 }) {
   const dispatch = useDispatch()
   const arrayProducts = useSelector(getBasketSelector)
+  const arrayProductsFavorite = useSelector(getFavoriteSelector)
   const oneProduct = arrayProducts.some((item) => item.id === id)
+  const oneProductFavorite = arrayProductsFavorite.some((item) => item.id === id)
 
-  function AddProductsBasket() {
+  function addProductsBasket() {
     dispatch(basketAdd(id))
+  }
+
+  function addProductsFavorite() {
+    dispatch(favoriteAdd(id))
   }
   return (
     <div className={productsStyles.prodactContainerCard}>
@@ -46,7 +53,7 @@ export function ProductOne({
         </p>
         <div className={productsStyles.styleButtonCardProduct}>
           <button
-            onClick={AddProductsBasket}
+            onClick={addProductsBasket}
             disabled={oneProduct}
           >
             {oneProduct ? (<i className="fa-solid fa-square-check" />) : (
@@ -56,7 +63,14 @@ export function ProductOne({
               </span>
             )}
           </button>
-          <button type="submit"><i className="fa-regular fa-heart" /></button>
+          <button
+            onClick={addProductsFavorite}
+            type="submit"
+            disabled={oneProductFavorite}
+          >
+            {oneProductFavorite ? (<i className="fa-solid fa-heart-circle-check" />) : (<i className="fa-regular fa-heart" />)}
+
+          </button>
         </div>
       </div>
     </div>

@@ -6,10 +6,12 @@ import logoHeaderOne from '../Img/logoOne.png'
 import { Search } from './Search/Search'
 import { getBasketSelector } from '../../redux/slices/basketSlice'
 import { getTokenSelector, removeUser } from '../../redux/slices/userSlice'
+import { getFavoriteSelector } from '../../redux/slices/favoriteSlice'
 
 export function Header() {
   const dispatch = useDispatch()
   const arrProductInBasket = useSelector(getBasketSelector)
+  const arrProductInFavorite = useSelector(getFavoriteSelector)
   const token = useSelector(getTokenSelector)
   const kikUser = () => {
     dispatch(removeUser())
@@ -52,6 +54,19 @@ export function Header() {
                 <div className={headerStyle.basketProductLength}>
                   {arrProductInBasket.length > 0 && <p>{arrProductInBasket.length}</p>}
                 </div>
+              </li>
+            </div>
+            <div className={headerStyle.favoriteButtonStyle}>
+              <li>
+                <NavLink to="/favorite"><i className="fa-solid fa-heart" /></NavLink>
+                <div className={headerStyle.basketProductLengthFavorite}>
+                  {arrProductInFavorite.length > 0 && <p>{arrProductInFavorite.length}</p>}
+                </div>
+              </li>
+            </div>
+            <div>
+              <li>
+                <NavLink to="/user"><i className="fa-solid fa-user" /></NavLink>
               </li>
             </div>
             <div>

@@ -6,7 +6,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import {
   basketDecrement, basketIncrement, basketIsCkeckedOne, basketRemove, getBasketSelector,
-} from '../../redux/slices/basketSlice'
+} from '../../../redux/slices/basketSlice'
 import basketCardStyle from './BasketCard.module.css'
 
 export function BasketCard({
@@ -52,9 +52,9 @@ export function BasketCard({
             <span className={basketCardStyle.fake} />
           </label>
         </div>
+        <h4>{name}</h4>
         <div className={basketCardStyle.basketCardInfo}>
           <div>
-            <p>{name}</p>
             <p>
               <span>Количество на складе: </span>
               {stock}

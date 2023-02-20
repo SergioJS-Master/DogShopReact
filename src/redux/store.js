@@ -4,6 +4,7 @@ import { REDUX_LS_KEY } from './contants'
 import { filterReducer } from './slices/filterSlice'
 import { userReducer } from './slices/userSlice'
 import { getInitState } from './initState'
+import { favoriteReducer } from './slices/favoriteSlice'
 // import { getInitState } from './initState'
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     filter: filterReducer,
     basket: basketReducer,
     user: userReducer,
+    favorite: favoriteReducer,
   },
   preloadedState: getInitState(),
 })

@@ -14,14 +14,7 @@ import { getTokenSelector } from '../../../redux/slices/userSlice'
 function ShowAllProductsDetail({ data }) {
   return (
     <div>
-
-      <div className={productPageStyles.productsContainer}>
-        {data.products.map(({ _id: id, ...restProduct }) => (
-          <ProductOne {...restProduct} id={id} key={id} />
-        ))}
-      </div>
-
-      {!data[0] && data && (
+      {/* {!data[0] && (
       <div className={productPageStyles.searchZeroErrorBlock}>
         <div className={productPageStyles.searchZeroError}>
           <p>
@@ -29,7 +22,13 @@ function ShowAllProductsDetail({ data }) {
           </p>
         </div>
       </div>
-      )}
+      )} */}
+
+      <div className={productPageStyles.productsContainer}>
+        {data.products.map(({ _id: id, ...restProduct }) => (
+          <ProductOne {...restProduct} id={id} key={id} />
+        ))}
+      </div>
 
     </div>
   )

@@ -26,7 +26,7 @@
 .searchStyle {
     width: auto;
     text-align: center;
-    margin-right: 300px;
+    margin-right: 150px;
     /* display: flex;
     justify-content: center; */
 }
@@ -95,7 +95,26 @@ ul {
     position: relative;
 }
 
+.favoriteButtonStyle {
+    position: relative;
+}
+
 .basketProductLength p {
+    position: absolute;
+    top: -28%;
+    left: 71%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-color: #FF8900;
+    box-shadow: 0px 0px 15px #b66100;
+    color: white;
+    font-size: 21px;
+    font-weight: 1000;
+    border-radius: 50px;
+}
+
+.basketProductLengthFavorite p {
     position: absolute;
     top: -28%;
     left: 71%;

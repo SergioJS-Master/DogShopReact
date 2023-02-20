@@ -11,15 +11,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { dogShopApi } from '../../api/DogShopApi'
-import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../redux/slices/basketSlice'
+import { dogShopApi } from '../../../api/DogShopApi'
+import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
-import { Loader } from '../Loader/Loader'
+import { Loader } from '../../Loader/Loader'
 import basketPorductCardStyles from './Basket.module.css'
-import logoTwo from '../Img/logoTwo.png'
-import { getTokenSelector } from '../../redux/slices/userSlice'
+import logoTwo from '../../Img/logoTwo.png'
+import { getTokenSelector } from '../../../redux/slices/userSlice'
 
-export function Basket() {
+export function BasketTitle() {
   const token = useSelector(getTokenSelector)
   const dispatch = useDispatch()
 
@@ -175,7 +175,7 @@ export function Basket() {
                       index={item.index}
                       key={item._id}
                       id={item._id}
-                      title={item.name}
+                      name={item.name}
                       price={item.price}
                       discount={item.discount}
                       stock={item.stock}

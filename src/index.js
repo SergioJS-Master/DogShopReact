@@ -12,7 +12,9 @@ import { SignIn } from './components/Header/Signin/Signin'
 import { Main } from './components/Main/Main'
 import { ProductsPage } from './components/Main/ProductsPage/ProductsPage'
 import { store } from './redux/store'
-import { Basket } from './components/Basket/Basket'
+import { BasketTitle } from './components/Basket/BasketTitle/BasketTitle'
+import { User } from './components/Header/User/User'
+import { FavoriteTitle } from './components/Favorite/FavoriteTitle/FavoriteTitle'
 
 const router = createBrowserRouter(
   [
@@ -38,7 +40,15 @@ const router = createBrowserRouter(
         },
         {
           path: 'basket',
-          element: <Basket />,
+          element: <BasketTitle />,
+        },
+        {
+          path: 'favorite',
+          element: <FavoriteTitle />,
+        },
+        {
+          path: 'user',
+          element: <User />,
         },
       ],
     },

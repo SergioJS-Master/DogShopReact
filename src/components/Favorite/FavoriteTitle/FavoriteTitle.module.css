@@ -1,0 +1,26 @@
+.favoriteTitleBlock {
+    display: flex;
+    justify-content: center;
+    border: 3px solid rgb(8, 0, 57);
+    background-color: rgb(8, 0, 57);
+    box-shadow: 0px 0px 10px rgb(8, 0, 57);
+    border-radius: 6px;
+    margin: 100px;
+    margin-left: 250px;
+    margin-right: 250px;
+    font-family: Georgia, serif;
+}
+
+.favoriteTitleBlock h2 {
+    margin-top: 0px;
+}
+
+.test {
+    width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    display: grid;
+    justify-content: center;
+    margin: 20px;
+
+}
