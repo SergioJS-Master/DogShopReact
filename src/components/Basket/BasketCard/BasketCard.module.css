@@ -164,3 +164,14 @@
     padding: 15px;
     /* margin-top: -5px; */
 }
+
+.basketLinkStyle a {
+    color: rgb(8, 0, 57);
+    text-decoration: none;
+    transition: ease-in 0.2s;
+
+}
+
+.basketLinkStyle a:hover {
+    color: #FF8900;
+}

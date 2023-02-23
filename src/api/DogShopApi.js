@@ -91,6 +91,15 @@ class DogShopApi {
       }).then((res) => res.json())),
     )
   }
+
+  async getDetailsProduct(id, token) {
+    const res = await fetch(`${this.baseUrl}/products/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    return res.json()
+  }
 }
 
 export const dogShopApi = new DogShopApi({

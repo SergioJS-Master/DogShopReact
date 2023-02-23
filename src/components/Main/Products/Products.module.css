@@ -1,16 +1,16 @@
 .prodactContainerCard {
     padding: 55px;
+    margin-top: 30px;
 }
 
 .styleCard {
     font-family: Georgia, serif;
-    padding: 55px;
-    border-radius: 6px;
+    padding: 43px;
     border-width: 8px;
-    height: 630px;
+    height: 100%;
     border: 2px solid rgb(8, 0, 57);
     border-radius: 6px;
-    box-shadow: 0px 0px 15px rgb(8, 0, 57);
+    box-shadow: 0px 0px 15px rgb(8 0 57);
     display: grid;
 }
 
@@ -78,8 +78,8 @@
     display: flex;
 }
 
-p {
-    padding: -20px;
+.styleCard p {
+    padding: -50px;
 }
 
 p span {
@@ -91,4 +91,15 @@ p span {
     width: 270px;
     text-align: center;
     margin-top: -30px;
+}
+
+.styleCard a {
+    text-decoration: none;
+    color: rgb(8, 0, 57);
+    transition: ease-in 0.2s;
+}
+
+.styleCard a:hover {
+    text-decoration: none;
+    color: #FF8900;
 }

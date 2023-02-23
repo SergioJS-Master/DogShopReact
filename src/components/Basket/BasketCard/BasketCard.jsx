@@ -4,6 +4,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/button-has-type */
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
   basketDecrement, basketIncrement, basketIsCkeckedOne, basketRemove, getBasketSelector,
 } from '../../../redux/slices/basketSlice'
@@ -35,6 +36,11 @@ export function BasketCard({
       dispatch(basketIncrement(id))
     }
   }
+
+  if (!product) {
+    return null
+  }
+
   return (
     <div className={basketCardStyle.basketCard}>
       <div>
@@ -52,7 +58,11 @@ export function BasketCard({
             <span className={basketCardStyle.fake} />
           </label>
         </div>
-        <h4>{name}</h4>
+        <div className={basketCardStyle.basketLinkStyle}>
+          <Link to={`./${id}`}>
+            <h4>{name}</h4>
+          </Link>
+        </div>
         <div className={basketCardStyle.basketCardInfo}>
           <div>
             <p>

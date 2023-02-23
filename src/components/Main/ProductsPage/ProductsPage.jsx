@@ -14,7 +14,7 @@ import { getTokenSelector } from '../../../redux/slices/userSlice'
 function ShowAllProductsDetail({ data }) {
   return (
     <div>
-      {/* {!data[0] && (
+      {/* {!data.length === 0 && (
       <div className={productPageStyles.searchZeroErrorBlock}>
         <div className={productPageStyles.searchZeroError}>
           <p>

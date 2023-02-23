@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable max-len */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-undef */
 // import { useDispatch, useSelector } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import productsStyles from './Products.module.css'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
@@ -27,10 +29,14 @@ export function ProductOne({
   return (
     <div className={productsStyles.prodactContainerCard}>
       <div className={productsStyles.styleCard}>
-        <h4 className={productsStyles.headingStyles}>{name}</h4>
-        <div className={productsStyles.productImg}>
-          <img src={pictures} alt="" />
-        </div>
+        <Link to={`./${id}`}>
+          <h4 className={productsStyles.headingStyles}>{name}</h4>
+          <hr />
+          <div className={productsStyles.productImg}>
+            <img src={pictures} alt="" />
+          </div>
+          <hr />
+        </Link>
         <p>
           <span>Цена: </span>
           {price}

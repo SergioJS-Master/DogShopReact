@@ -10,7 +10,8 @@
 /* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
@@ -22,10 +23,13 @@ import { getTokenSelector } from '../../../redux/slices/userSlice'
 export function BasketTitle() {
   const token = useSelector(getTokenSelector)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const basket = useSelector(getBasketSelector)
+  console.log({ basket })
   const ids = basket.map((item) => item.id)
 
+  console.log(ids)
   const changeInputAllCar = basket.every((item) => item.isChecked)
   const checkedOne = basket.some((item) => item.isChecked)
 
@@ -62,12 +66,24 @@ export function BasketTitle() {
   // })
   // console.log('>>>>>', data)
 
+  useEffect(() => {
+    if (!token) {
+      navigate('/signin')
+    }
+  }, [token])
+
+  if (!ids) {
+    return null
+  }
+
   const {
     data, isLoading, error, refetch,
   } = useQuery({
     queryKey: ['basket', basket],
     queryFn: () => dogShopApi.getProductsByIds(ids, token),
   })
+
+  console.log('>>>>>', { data })
 
   if (error) {
     return (
@@ -173,7 +189,7 @@ export function BasketTitle() {
                     <BasketCard
                       pictures={item.pictures}
                       index={item.index}
-                      key={item._id}
+                      key={item.key}
                       id={item._id}
                       name={item.name}
                       price={item.price}

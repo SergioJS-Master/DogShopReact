@@ -2,8 +2,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
@@ -16,14 +17,22 @@ export function FavoriteTitle() {
   const favorite = useSelector(getFavoriteSelector)
   const ids = favorite.map((item) => item.id)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   console.log(dispatch)
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/signin')
+    }
+  }, [token])
 
   const {
     data, error, isLoading, refetch,
   } = useQuery({
     queryKey: ['favorite', favorite],
     queryFn: () => dogShopApi.getProductsByIds(ids, token),
+    keepPreviousData: true,
   })
   console.log({ data })
   if (isLoading) {

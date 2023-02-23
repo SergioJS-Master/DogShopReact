@@ -1,0 +1,168 @@
+.ProductDetailStylesContainer {
+    width: auto;
+    height: auto;
+    background-color: rgb(8, 0, 57);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgb(8, 0, 57);
+}
+
+.ProductDetailStylesContainer span {
+    color: white;
+    font-size: 17px;
+}
+
+.ProductDetailStylesContent {
+    padding: 40px;
+    margin-top: 0px;
+    display: flex;
+}
+
+.ProductDetailStylesContent img {
+    width: 100%;
+    max-width: 350px;
+    margin-right: 70px;
+    border-radius: 6px;
+}
+
+.ProductDetailStylesButton {
+    display: flex;
+    margin-top: 60px;
+}
+
+.ProductDetailStylesButton button {
+    margin-right: 20px;
+    background: #FF8900;
+    color: rgb(8, 0, 57);
+    text-decoration: none;
+    border-radius: 6px;
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    padding: 10px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    font-family: Georgia, serif;
+}
+
+.ProductDetailStylesButton button:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
+}
+
+.ProductDetailStylesButton i {
+    color: rgb(207, 0, 0);
+}
+
+.ProductDetailStylesReviewsContainer {
+    /* width: auto; */
+    height: auto;
+    background-color: rgb(8, 0, 57);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-family: Georgia, serif;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgb(8, 0, 57);
+    width: auto;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 660px;
+}
+
+.ProductDetailStylesReviewsContainer::-webkit-scrollbar {
+    width: 10px;
+    /* ширина scrollbar */
+}
+
+.ProductDetailStylesReviewsContainer::-webkit-scrollbar-track {
+    background: #FF8900;
+    /* цвет дорожки */
+    border-radius: 4px;
+}
+
+.ProductDetailStylesReviewsContainer::-webkit-scrollbar-thumb {
+    background-color: rgb(8, 0, 57);
+    /* цвет плашки */
+    border-radius: 4px;
+    /* закругления плашки */
+    border: 1.5px solid #FF8900;
+    /* padding вокруг плашки */
+}
+
+.ProductDetailOnReviewsCard {
+    margin-bottom: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px #FF8900;
+    color: rgb(8, 0, 57);
+    border-radius: 6px;
+    padding: 15px;
+    transition: ease-in 0.2s;
+}
+
+.ProductDetailOnReviewsCard:hover {
+    box-shadow: 0px 0px 15px #FF8900;
+}
+
+/* .ProductDetailOnReviewsCard p {
+    color: rgb(8, 0, 57);
+}
+
+.ProductDetailOnReviewsCard span {
+    color: rgb(8, 0, 57);
+} */
+
+.ProductDetailHeadReviews {
+    display: flex;
+    justify-content: space-between;
+}
+
+.created_at {
+    display: flex;
+    justify-content: space-between
+}
+
+
+.ProductDetailStylesBorder {
+    border: 3px solid #FF8900;
+    box-shadow: 0px 0px 10px #FF8900 inset;
+    margin-left: 230px;
+    margin-right: 230px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.ProductDetailStylesBorderOne {
+    border: 1px solid #FF8900;
+    box-shadow: 0px 0px 20px #FF8900 inset;
+}
+
+.ProductDetailRating {
+    display: flex;
+}
+
+.ProductDetailRating i {
+    color: rgb(255, 221, 0);
+}
+
+.ProductDetailStylesReviewsBorder {
+    background-color: rgb(8, 0, 57);
+    font-family: Georgia, serif;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 20px;
+    color: white;
+
+}
+
+.ProductDetailStylesReviewsBorder>p {
+    margin-left: 36px;
+}
