@@ -92,11 +92,33 @@ class DogShopApi {
     )
   }
 
+  // Запрос на получение id товара
   async getDetailsProduct(id, token) {
     const res = await fetch(`${this.baseUrl}/products/${id}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
+    })
+    return res.json()
+  }
+
+  // получение информации о пользователю через токен
+  async getUserInfo(token) {
+    const res = await fetch(`${this.baseUrl}/v2/sm9/users/me`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    return res.json()
+  }
+
+  async addReviews(id) {
+    const res = await fetch(`${this.baseUrl}/products/review/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(id),
     })
     return res.json()
   }

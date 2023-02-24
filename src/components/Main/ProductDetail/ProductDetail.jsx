@@ -3,6 +3,9 @@
 /* eslint-disable max-len */
 /* eslint-disable react/button-has-type */
 import { useQuery } from '@tanstack/react-query'
+// import {
+//   Field, Form, Formik,
+// } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { dogShopApi } from '../../../api/DogShopApi'
@@ -10,6 +13,7 @@ import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
 // import { favoriteAdd } from '../../../redux/slices/favoriteSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
+// import { createFormSignValidator } from '../../Header/Signin/validatorsign'
 import { Loader } from '../../Loader/Loader'
 import ProductDetailStyles from './ProductDetail.module.css'
 
@@ -18,7 +22,8 @@ export function ProductDetail() {
   const { productId } = useParams()
   const dispatch = useDispatch()
 
-  // const ids = details.map((item) => item.id)
+  const details = useSelector(getBasketSelector)
+  const favorite = useSelector(getFavoriteSelector)
 
   // запрос на получение id для детальной информации
   const {
@@ -40,11 +45,28 @@ export function ProductDetail() {
     dispatch(favoriteAdd(data._id))
   }
 
-  const details = useSelector(getBasketSelector)
   const oneProduct = details.map(({ id }) => id).includes(data._id)
-
-  const favorite = useSelector(getFavoriteSelector)
   const oneProductInFavorite = favorite.map(({ id }) => id).includes(data._id)
+
+  // const initialValuesReviews = {
+  //   text: '',
+  // }
+
+  // const { mutateAsync } = useMutation({
+  //   mutationFn: (values) => dogShopApi.signin(values)
+  //     .then((e) => {
+  //       e.json()
+  //     }),
+  // })
+
+  // const submitHandler = async (values) => {
+  //   await mutateAsync(values)
+  //   setTimeout(() => {
+  //     navigate('/details')
+  //   })
+  // }
+
+  // console.log(initialValuesReviews)
 
   return (
     <div className={ProductDetailStyles.ProductDetailStylesBorderOne}>
@@ -120,6 +142,24 @@ export function ProductDetail() {
             <span />
             {data.reviews.length}
           </p>
+          {/* <div>
+            <Formik
+              initialValues={initialValuesReviews}
+              validationSchema={createFormSignValidator}
+              onSubmit={submitHandler}
+            >
+              <div>
+                <Form>
+                  <h2>Оставьте отзыв:</h2>
+                  <Field
+                    name="text"
+                    placeholder="Оставьте отзыв"
+                  />
+                  <button disabled={isLoading} type="submit">Войти</button>
+                </Form>
+              </div>
+            </Formik>
+          </div> */}
           <div className={ProductDetailStyles.ProductDetailStylesReviewsContainer}>
             {data.reviews.map((e) => (
               <div className={ProductDetailStyles.ProductDetailOnReviewsCard}>

@@ -34,7 +34,7 @@ export function FavoriteTitle() {
     queryFn: () => dogShopApi.getProductsByIds(ids, token),
     keepPreviousData: true,
   })
-  console.log({ data })
+
   if (isLoading) {
     return <Loader />
   }
