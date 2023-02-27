@@ -1,0 +1,7 @@
+.ratingStarStyle img {
+    width: 20px;
+}
+
+.ratingStarStyle button {
+    background: transparent;
+}

@@ -1,12 +1,15 @@
 /* eslint-disable linebreak-style */
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 import headerStyle from './Header.module.css'
 import logoHeaderOne from '../Img/logoOne.png'
 import { Search } from './Search/Search'
 import { getBasketSelector } from '../../redux/slices/basketSlice'
 import { getTokenSelector, removeUser } from '../../redux/slices/userSlice'
 import { getFavoriteSelector } from '../../redux/slices/favoriteSlice'
+import { Modal } from '../Modal/Modal'
+import { AddProduct } from '../Main/AddProduct/AddProduct'
 
 export function Header() {
   const dispatch = useDispatch()
@@ -15,6 +18,16 @@ export function Header() {
   const token = useSelector(getTokenSelector)
   const kikUser = () => {
     dispatch(removeUser())
+  }
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const closeModalHandler = () => {
+    setIsOpenModal(false)
+  }
+
+  const openModalHandler = () => {
+    setIsOpenModal(true)
   }
   return (
     <header className={headerStyle.header}>
@@ -42,6 +55,13 @@ export function Header() {
                 <li>
                   <NavLink to="/products">
                     <Search />
+                  </NavLink>
+                </li>
+              </div>
+              <div className={headerStyle.searchStyle}>
+                <li>
+                  <NavLink onClick={openModalHandler}>
+                    <i className="fa-solid fa-wand-magic-sparkles" />
                   </NavLink>
                 </li>
               </div>
@@ -97,6 +117,9 @@ export function Header() {
           </div>
         </ul>
       </nav>
+      <Modal isOpen={isOpenModal} closeHandler={closeModalHandler}>
+        <AddProduct />
+      </Modal>
     </header>
   )
 }

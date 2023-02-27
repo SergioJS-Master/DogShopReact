@@ -24,9 +24,12 @@
 }
 
 .searchStyle {
+    display: flex;
+    align-items: center;
     width: auto;
     text-align: center;
-    margin-right: 150px;
+    margin-right: 90px;
+    margin-left: 20px;
     /* display: flex;
     justify-content: center; */
 }

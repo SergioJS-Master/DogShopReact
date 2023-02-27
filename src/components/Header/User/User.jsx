@@ -24,7 +24,7 @@ export function User() {
     queryKey: ['user'],
     queryFn: () => dogShopApi.getUserInfo(token),
   })
-
+  console.log({ data })
   if (isLoading) {
     return <Loader />
   }

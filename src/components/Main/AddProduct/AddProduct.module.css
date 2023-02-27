@@ -1,0 +1,8 @@
+.formStyles {
+    background-color: brown;
+    display: grid;
+}
+
+.formStyles form {
+    display: grid;
+}

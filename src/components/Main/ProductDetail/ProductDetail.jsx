@@ -3,19 +3,15 @@
 /* eslint-disable max-len */
 /* eslint-disable react/button-has-type */
 import { useQuery } from '@tanstack/react-query'
-// import {
-//   Field, Form, Formik,
-// } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
-// import { favoriteAdd } from '../../../redux/slices/favoriteSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
-// import { createFormSignValidator } from '../../Header/Signin/validatorsign'
 import { Loader } from '../../Loader/Loader'
 import ProductDetailStyles from './ProductDetail.module.css'
+import { ReviewsAddProduct } from './ReviewsAddProduct/ReviewsAddProduct'
 
 export function ProductDetail() {
   const token = useSelector(getTokenSelector)
@@ -33,6 +29,7 @@ export function ProductDetail() {
     queryFn: () => dogShopApi.getDetailsProduct(productId, token),
   })
 
+  console.log(data)
   if (isLoading) {
     return <Loader />
   }
@@ -47,26 +44,6 @@ export function ProductDetail() {
 
   const oneProduct = details.map(({ id }) => id).includes(data._id)
   const oneProductInFavorite = favorite.map(({ id }) => id).includes(data._id)
-
-  // const initialValuesReviews = {
-  //   text: '',
-  // }
-
-  // const { mutateAsync } = useMutation({
-  //   mutationFn: (values) => dogShopApi.signin(values)
-  //     .then((e) => {
-  //       e.json()
-  //     }),
-  // })
-
-  // const submitHandler = async (values) => {
-  //   await mutateAsync(values)
-  //   setTimeout(() => {
-  //     navigate('/details')
-  //   })
-  // }
-
-  // console.log(initialValuesReviews)
 
   return (
     <div className={ProductDetailStyles.ProductDetailStylesBorderOne}>
@@ -101,7 +78,7 @@ export function ProductDetail() {
                 {' '}
               </p>
               <p>
-                <span>Количество на складке: </span>
+                <span>Количество на складе: </span>
                 {data.stock}
                 {' '}
                 <span> шт.</span>
@@ -142,24 +119,7 @@ export function ProductDetail() {
             <span />
             {data.reviews.length}
           </p>
-          {/* <div>
-            <Formik
-              initialValues={initialValuesReviews}
-              validationSchema={createFormSignValidator}
-              onSubmit={submitHandler}
-            >
-              <div>
-                <Form>
-                  <h2>Оставьте отзыв:</h2>
-                  <Field
-                    name="text"
-                    placeholder="Оставьте отзыв"
-                  />
-                  <button disabled={isLoading} type="submit">Войти</button>
-                </Form>
-              </div>
-            </Formik>
-          </div> */}
+          <ReviewsAddProduct />
           <div className={ProductDetailStyles.ProductDetailStylesReviewsContainer}>
             {data.reviews.map((e) => (
               <div className={ProductDetailStyles.ProductDetailOnReviewsCard}>
@@ -193,7 +153,7 @@ export function ProductDetail() {
 
                 </div>
               </div>
-            ))}
+            )).reverse()}
           </div>
         </div>
       </div>

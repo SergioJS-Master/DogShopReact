@@ -112,13 +112,28 @@ class DogShopApi {
     return res.json()
   }
 
-  async addReviews(id) {
-    const res = await fetch(`${this.baseUrl}/products/review/${id}`, {
+  // добавление новых отзывов
+  async addReviews(productId, token, values) {
+    const res = await fetch(`${this.baseUrl}/products/review/${productId}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify(id),
+      body: JSON.stringify(values),
+    })
+    return res.json()
+  }
+
+  // добавление новых товаров
+  async addNewProduct(token, values) {
+    const res = await fetch(`${this.baseUrl}/products`, {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(values),
     })
     return res.json()
   }
