@@ -137,6 +137,34 @@ class DogShopApi {
     })
     return res.json()
   }
+
+  // удаление добавленного товара
+  async deleteMyProduct(productId, token) {
+    const res = await fetch(`${this.baseUrl}/products/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    })
+    if (res.status === 404) {
+      throw new Error(`Ошибка. Status: ${res.status}`)
+    }
+    return res.json()
+  }
+
+  // редактиррование добавленного товара
+  async edditAddMyProduct(productId, token, values) {
+    const res = await fetch(`${this.baseUrl}/products/${productId}`, {
+      method: 'PATCH',
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    })
+    return res.json()
+  }
 }
 
 export const dogShopApi = new DogShopApi({

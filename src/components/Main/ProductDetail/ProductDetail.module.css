@@ -168,3 +168,7 @@
 .ProductDetailStylesReviewsBorder>p {
     margin-left: 36px;
 }
+
+.modalDeleteButton {
+    position: relative;
+}

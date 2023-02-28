@@ -12,8 +12,6 @@ import { dogShopApi } from '../../../api/DogShopApi'
 import { withQuery } from '../../HOCs/withQuery'
 import { getSearchSelector } from '../../../redux/slices/filterSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
-// import { Filters } from './Filters/Filters'
-// import { FILTER_QUERY_NAME, getFilteredProducts } from './Filters/constants'
 
 function ShowAllProductsDetail({ data }) {
   console.log(data.products)
@@ -116,9 +114,6 @@ export function ProductsPage() {
   const search = useSelector(getSearchSelector)
   const token = useSelector(getTokenSelector)
 
-  // const [searchParams] = useSearchParams()
-  // const currentFilterNameFromQuery = searchParams.get(FILTER_QUERY_NAME)
-
   useEffect(() => {
     if (!token) {
       navigate('/signin')
@@ -128,9 +123,8 @@ export function ProductsPage() {
   const {
     data, error, isLoading, refetch,
   } = useQuery({
-    queryKey: ['productsfetch', search, token],
+    queryKey: ['productsfetch', search],
     queryFn: () => dogShopApi.getShowAllProducts(search, token),
-    enabled: (token !== undefined) && (token !== ''),
   })
 
   return (

@@ -15,8 +15,14 @@ export function Search() {
     return searchValueFromQuery ?? ''
   })
   const dispatch = useDispatch()
-
   const debouncedSearchValue = useDebounce(search, 600)
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/signin')
+    }
+  }, [token])
+
   const changeSearchHandler = (e) => {
     const newSearchValue = e.target.value
     setSearch(newSearchValue)
@@ -29,12 +35,6 @@ export function Search() {
   useEffect(() => {
     dispatch(changeSearchFilter(debouncedSearchValue))
   }, [debouncedSearchValue, dispatch])
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/signin')
-    }
-  }, [token])
 
   return (
     <input

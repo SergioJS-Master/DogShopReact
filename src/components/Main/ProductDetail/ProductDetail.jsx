@@ -2,24 +2,48 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable react/button-has-type */
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
-import { getTokenSelector } from '../../../redux/slices/userSlice'
+import { getTokenSelector, getUserIdSelector } from '../../../redux/slices/userSlice'
 import { Loader } from '../../Loader/Loader'
+import { Modal } from '../../Modal/Modal'
+import { EdditAddProduct } from './EdditAddProduct/EdditAddProduct'
 import ProductDetailStyles from './ProductDetail.module.css'
 import { ReviewsAddProduct } from './ReviewsAddProduct/ReviewsAddProduct'
 
 export function ProductDetail() {
-  const token = useSelector(getTokenSelector)
+  const navigate = useNavigate()
+  const userId = useSelector(getUserIdSelector)
   const { productId } = useParams()
   const dispatch = useDispatch()
 
+  const token = useSelector(getTokenSelector)
   const details = useSelector(getBasketSelector)
   const favorite = useSelector(getFavoriteSelector)
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModalForm, serIsOpenModalForm] = useState(false)
+
+  const closeModalHandlerForm = () => {
+    serIsOpenModalForm(false)
+  }
+
+  const openModalHandlerForm = () => {
+    serIsOpenModalForm(true)
+  }
+
+  const closeModalHandler = () => {
+    setIsOpenModal(false)
+  }
+
+  const openModalHandler = () => {
+    setIsOpenModal(true)
+  }
 
   // запрос на получение id для детальной информации
   const {
@@ -29,9 +53,14 @@ export function ProductDetail() {
     queryFn: () => dogShopApi.getDetailsProduct(productId, token),
   })
 
-  console.log(data)
-  if (isLoading) {
-    return <Loader />
+  // запрос на удаление товара
+  const { mutateAsync } = useMutation({
+    mutationFn: () => dogShopApi.deleteMyProduct(productId, token),
+  })
+
+  const removeHandler = async (values) => {
+    await mutateAsync(values)
+    navigate('/products')
   }
 
   function addProductFromFavoriteInBasket() {
@@ -42,9 +71,13 @@ export function ProductDetail() {
     dispatch(favoriteAdd(data._id))
   }
 
+  if (isLoading) {
+    return <Loader />
+  }
+
   const oneProduct = details.map(({ id }) => id).includes(data._id)
   const oneProductInFavorite = favorite.map(({ id }) => id).includes(data._id)
-
+  const isMyProductTrueFalse = data.author._id
   return (
     <div className={ProductDetailStyles.ProductDetailStylesBorderOne}>
       <div className={ProductDetailStyles.ProductDetailStylesBorder}>
@@ -102,6 +135,22 @@ export function ProductDetail() {
                 >
                   {oneProductInFavorite ? (<i className="fa-solid fa-heart-circle-check" />) : (<i className="fa-regular fa-heart" />)}
                 </button>
+
+                {userId === isMyProductTrueFalse ? (
+                  <button type="button" onClick={openModalHandler}>
+                    Удалить
+                  </button>
+                ) : (
+                  ''
+                )}
+
+                {userId === isMyProductTrueFalse ? (
+                  <button type="button" onClick={openModalHandlerForm}>
+                    Редактировать
+                  </button>
+                ) : (
+                  ''
+                )}
                 <p>
                   <span>В избранном: </span>
                   {data.likes.length}
@@ -150,13 +199,18 @@ export function ProductDetail() {
                     <span> </span>
                     <i className="fa-solid fa-star" />
                   </p>
-
                 </div>
               </div>
             )).reverse()}
           </div>
         </div>
       </div>
+      <Modal isOpen={isOpenModal} closeHandler={closeModalHandler} className={ProductDetailStyles.modalDeleteButton}>
+        <button onClick={removeHandler}>Удалить</button>
+      </Modal>
+      <Modal isOpen={isOpenModalForm} closeHandler={closeModalHandlerForm}>
+        <EdditAddProduct />
+      </Modal>
     </div>
 
   )

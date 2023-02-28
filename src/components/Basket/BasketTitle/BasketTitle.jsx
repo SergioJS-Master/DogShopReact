@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -11,7 +12,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
@@ -19,11 +20,21 @@ import { Loader } from '../../Loader/Loader'
 import basketPorductCardStyles from './Basket.module.css'
 import logoTwo from '../../Img/logoTwo.png'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
+import { Modal } from '../../Modal/Modal'
 
 export function BasketTitle() {
   const token = useSelector(getTokenSelector)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  function openModalHandler() {
+    setIsOpenModal(true)
+  }
+
+  function closeModalHandlre() {
+    setIsOpenModal(false)
+  }
 
   const basket = useSelector(getBasketSelector)
   console.log({ basket })
@@ -179,7 +190,7 @@ export function BasketTitle() {
               </div>
               <div className={basketPorductCardStyles.buttonDeleteCheckboxHeder}>
                 <span>Удалить все товары: </span>
-                <button onClick={basketButtonDeleteProductCheckbox} className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
+                <button onClick={openModalHandler} className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
               </div>
             </div>
             <div className={basketPorductCardStyles.basketBackgroudLine}>
@@ -251,7 +262,10 @@ export function BasketTitle() {
           </div>
         </div>
       )}
-
+      <Modal isOpen={isOpenModal} closeHandler={closeModalHandlre}>
+        <p>Вы уверены что хотите уделить товар(ы)</p>
+        <button onClick={basketButtonDeleteProductCheckbox}>Удалить?</button>
+      </Modal>
     </div>
   )
 }

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import stylesModalWr from './Modal.module.css'
@@ -16,8 +18,11 @@ function ModalInner({ children, closeHandler }) {
     }
   }, [])
 
+  const closeModalByClickX = () => closeHandler()
+
   return (
     <div>
+      <button type="button" onClick={closeModalByClickX}>X</button>
       {children}
     </div>
   )
@@ -25,8 +30,14 @@ function ModalInner({ children, closeHandler }) {
 export function Modal({ isOpen, closeHandler, children }) {
   if (!isOpen) return null
 
+  const closeModalByClickWrapper = (e) => {
+    if (e.target === e.currentTarget) {
+      closeHandler()
+    }
+  }
+
   return createPortal(
-    <div className={stylesModalWr.modalWr}>
+    <div className={stylesModalWr.modalWr} onClick={closeModalByClickWrapper}>
       <ModalInner closeHandler={closeHandler}>
         {children}
       </ModalInner>

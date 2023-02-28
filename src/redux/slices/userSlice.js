@@ -25,3 +25,4 @@ const userSlice = createSlice({
 export const { userAdd, removeUser } = userSlice.actions
 export const userReducer = userSlice.reducer
 export const getTokenSelector = (state) => state.user.token
+export const getUserIdSelector = (state) => state.user._id
