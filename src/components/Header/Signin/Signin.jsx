@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-shadow */
-/* eslint-disable linebreak-style */
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik'
@@ -10,7 +7,6 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createFormSignValidator } from './validatorsign'
 import styleSignForm from './Signin.module.css'
-// import { DogsShopContext } from '../../../Contexts/Contexts'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { Loader } from '../../Loader/Loader'
 import { userAdd } from '../../../redux/slices/userSlice'

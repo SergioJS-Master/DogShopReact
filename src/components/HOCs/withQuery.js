@@ -1,11 +1,7 @@
 /* eslint-disable func-names */
-// import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Loader } from '../Loader/Loader'
 import withQueryStyles from './withQuery.module.css'
-// import { DogsShopContext } from '../../Contexts/Contexts'
-
-// const token = useContext(DogsShopContext)
 
 export const withQuery = (WrappedComponent) => function ({
   error, isError, isLoading, token, refetch, ...rest

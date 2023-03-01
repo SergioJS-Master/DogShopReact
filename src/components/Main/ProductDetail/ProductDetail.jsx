@@ -1,7 +1,5 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
-/* eslint-disable react/button-has-type */
+
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -53,6 +51,7 @@ export function ProductDetail() {
     queryFn: () => dogShopApi.getDetailsProduct(productId, token),
   })
 
+  console.log(data)
   // запрос на удаление товара
   const { mutateAsync } = useMutation({
     mutationFn: () => dogShopApi.deleteMyProduct(productId, token),
@@ -173,10 +172,14 @@ export function ProductDetail() {
             {data.reviews.map((e) => (
               <div className={ProductDetailStyles.ProductDetailOnReviewsCard}>
                 <div className={ProductDetailStyles.created_at}>
-                  <p>
-                    <span>Автор: </span>
-                    {e.author}
-                  </p>
+                  <div>
+                    <img src={data.author.avatar} alt="logo" className={ProductDetailStyles.avatarStyle} />
+                    <p>
+                      <span>Автор: </span>
+                      {e.author}
+                    </p>
+                  </div>
+
                   <p>
                     {' '}
                     <span>Дата отзыва: </span>

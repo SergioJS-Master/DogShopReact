@@ -1,6 +1,4 @@
-/* eslint-disable array-callback-return */
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

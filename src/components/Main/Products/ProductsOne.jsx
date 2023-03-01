@@ -1,9 +1,4 @@
-/* eslint-disable react/jsx-no-undef */
 /* eslint-disable max-len */
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable no-undef */
-// import { useDispatch, useSelector } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import productsStyles from './Products.module.css'

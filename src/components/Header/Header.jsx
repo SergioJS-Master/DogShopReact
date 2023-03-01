@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'

@@ -7,21 +7,23 @@ import { getTokenSelector } from '../../../redux/slices/userSlice'
 import { useDebounce } from '../../hooks/useDebounce'
 
 export function Search() {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const dispatch = useDispatch()
+
   const navigate = useNavigate()
   const token = useSelector(getTokenSelector)
-  const [search, setSearch] = useState(() => {
-    const searchValueFromQuery = searchParams.get('q ')
-    return searchValueFromQuery ?? ''
-  })
-  const dispatch = useDispatch()
-  const debouncedSearchValue = useDebounce(search, 600)
 
   useEffect(() => {
     if (!token) {
       navigate('/signin')
     }
   }, [token])
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [search, setSearch] = useState(() => {
+    const searchValueFromQuery = searchParams.get('q')
+    return searchValueFromQuery || ''
+  })
+  const debouncedSearchValue = useDebounce(search, 300)
 
   const changeSearchHandler = (e) => {
     const newSearchValue = e.target.value
@@ -41,6 +43,8 @@ export function Search() {
       className={{
         bacgrounfColor: 'black',
       }}
+      id="search"
+      type="text"
       placeholder="Поиск по каталогу..."
       value={search}
       onChange={changeSearchHandler}

@@ -1,13 +1,12 @@
-/* eslint-disable no-restricted-globals */
 /* eslint-disable max-len */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
   basketDecrement, basketIncrement, basketIsCkeckedOne, basketRemove, getBasketSelector,
 } from '../../../redux/slices/basketSlice'
+import { Modal } from '../../Modal/Modal'
 import basketCardStyle from './BasketCard.module.css'
 
 export function BasketCard({
@@ -16,6 +15,15 @@ export function BasketCard({
   const dispatch = useDispatch()
   const basketarrayProducts = useSelector(getBasketSelector)
   const product = basketarrayProducts.find((item) => item.id === id)
+  const [isOpen, setIsOpenModal] = useState(false)
+
+  function openModalHandler() {
+    setIsOpenModal(true)
+  }
+
+  function closeModalHandler() {
+    setIsOpenModal(false)
+  }
 
   function basketRemoveProductOne() {
     dispatch(basketRemove(id))
@@ -96,9 +104,12 @@ export function BasketCard({
           </div>
         </div>
         <div className={basketCardStyle.buttonDeleteCard}>
-          <button className={basketCardStyle.buttonDeleteCard} onClick={basketRemoveProductOne}><i className="fa-solid fa-trash-can" /></button>
+          <button className={basketCardStyle.buttonDeleteCard} onClick={openModalHandler}><i className="fa-solid fa-trash-can" /></button>
         </div>
       </div>
+      <Modal isOpen={isOpen} closeHandler={closeModalHandler}>
+        <button type="button" onClick={basketRemoveProductOne}>Удалить</button>
+      </Modal>
     </div>
   )
 }

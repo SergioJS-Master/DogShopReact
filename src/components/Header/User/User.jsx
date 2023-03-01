@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'

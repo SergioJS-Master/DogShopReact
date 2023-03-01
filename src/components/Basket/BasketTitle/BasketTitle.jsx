@@ -1,20 +1,13 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable no-plusplus */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-shadow */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { dogShopApi } from '../../../api/DogShopApi'
-import { basketCheckboxRemove, basketIsCheckedAllCards, getBasketSelector } from '../../../redux/slices/basketSlice'
+import {
+  basketCheckboxRemove,
+  basketIsCheckedAllCards, getBasketSelector,
+} from '../../../redux/slices/basketSlice'
 import { BasketCard } from '../BasketCard/BasketCard'
 import { Loader } from '../../Loader/Loader'
 import basketPorductCardStyles from './Basket.module.css'
@@ -190,7 +183,13 @@ export function BasketTitle() {
               </div>
               <div className={basketPorductCardStyles.buttonDeleteCheckboxHeder}>
                 <span>Удалить все товары: </span>
-                <button onClick={openModalHandler} className={basketPorductCardStyles.deleteButton}><i className="fa-solid fa-trash-can" /></button>
+                <button
+                  onClick={openModalHandler}
+                  className={basketPorductCardStyles.deleteButton}
+                >
+                  <i className="fa-solid fa-trash-can" />
+
+                </button>
               </div>
             </div>
             <div className={basketPorductCardStyles.basketBackgroudLine}>

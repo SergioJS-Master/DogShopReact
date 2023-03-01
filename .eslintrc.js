@@ -29,5 +29,13 @@ module.exports = {
     'max-len': ['error', { code: 100 }],
     'eslintobject-curly-newline': 0,
     'linebreak-style': 0,
+    'jsx-a11y/alt-text': 0,
+    'no-underscore-dangle': 'off',
+    'react/button-has-type': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'no-plusplus': 'off',
+    'react/jsx-no-bind': 'off',
+    'no-return-assign': 'off',
+    'no-param-reassign': 'off',
   },
 }

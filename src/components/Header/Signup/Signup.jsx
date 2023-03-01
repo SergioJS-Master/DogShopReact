@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable linebreak-style */
-// eslint-disable-next-line object-curly-newline
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  Formik, Form, Field, ErrorMessage,
+} from 'formik'
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'

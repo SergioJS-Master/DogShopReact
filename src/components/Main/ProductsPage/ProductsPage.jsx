@@ -1,10 +1,7 @@
 /* eslint-disable max-len */
-/* eslint-disable no-shadow */
-/* eslint-disable no-undef */
-/* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import productPageStyles from './ProductsPage.module.css'
 import { ProductOne } from '../Products/ProductsOne'
@@ -14,10 +11,17 @@ import { getSearchSelector } from '../../../redux/slices/filterSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
 
 function ShowAllProductsDetail({ data }) {
-  console.log(data.products)
   const [sortProducts, setSortProducts] = useState(data.products)
+  const [sortParams, setSortParams] = useSearchParams()
 
-  const test = (value) => {
+  const productSort = (value) => {
+    const newSortValue = value
+    setSortProducts(newSortValue)
+    setSortParams({
+      ...Object.fromEntries(sortParams.entries()),
+      value: newSortValue,
+    })
+
     if (value === 'filterPriceUp') {
       const priceUp = [...data.products].sort((a, b) => a.price - b.price)
       setSortProducts(priceUp)
@@ -44,25 +48,10 @@ function ShowAllProductsDetail({ data }) {
     }
   }
 
-  // const test = (value) => {
-  //   if (value === 'filterPriceUp') {
-  //     const priceDown = [...data.products].sort((a, b) => b.price - a.price)
-  //     setSortProducts(priceDown)
-  //   }
-  // const arrProducts = data.products
+  useEffect(() => {
+    setSortProducts(data.products)
+  }, [data.products])
 
-  // const filterPriceDown = arrProducts.sort((a, b) => b.price - a.price)
-  // console.log(filterPriceDown)
-
-  // function filterPriceUpFn() {
-  //   const filterPriceUp = arrProducts.sort((a, b) => a.price - b.price)
-  //   return filterPriceUp
-  // }
-
-  // function filterPriceDownFn() {
-  //   const filterPriceDown = arrProducts.sort((a, b) => b.price - a.price)
-  //   return filterPriceDown
-  // }
   return (
     <div>
       {/* {!data.length === 0 && (
@@ -74,26 +63,26 @@ function ShowAllProductsDetail({ data }) {
         </div>
       </div>
       )} */}
-      {/* <Filters /> */}
+
       <div>
-        <button type="button" onClick={() => test('filterPriceUp')}>
+        <button type="button" onClick={() => productSort('filterPriceUp')}>
           По уменьшению
         </button>
-        <button type="button" onClick={() => test('filterPriceDown')}>
+        <button type="button" onClick={() => productSort('filterPriceDown')}>
           По увеличению
         </button>
 
-        <button type="button" onClick={() => test('filterDiscountUp')}>
+        <button type="button" onClick={() => productSort('filterDiscountUp')}>
           Скидка по уменьшению
         </button>
-        <button type="button" onClick={() => test('filterDiscountDown')}>
+        <button type="button" onClick={() => productSort('filterDiscountDown')}>
           Скидка по увеличению
         </button>
 
-        <button type="button" onClick={() => test('filterCreated_atUp')}>
+        <button type="button" onClick={() => productSort('filterCreated_atUp')}>
           Дата по уменьшению
         </button>
-        <button type="button" onClick={() => test('filterCreated_atDown')}>
+        <button type="button" onClick={() => productSort('filterCreated_atDown')}>
           Дата по увеличению
         </button>
       </div>

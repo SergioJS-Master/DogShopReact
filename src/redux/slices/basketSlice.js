@@ -1,6 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable no-return-assign */
-/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import { initState } from '../initState'
 
