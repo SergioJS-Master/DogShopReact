@@ -61,7 +61,6 @@
 
 .ProductDetailStylesReviewsContainer {
     /* width: auto; */
-    height: auto;
     background-color: rgb(8, 0, 57);
     margin-left: 20px;
     margin-right: 20px;
@@ -75,7 +74,8 @@
     width: auto;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    height: 660px;
+    height: 100%;
+    max-height: 660px;
 }
 
 .ProductDetailStylesReviewsContainer::-webkit-scrollbar {
@@ -176,4 +176,17 @@
 .avatarStyle {
     width: 70px;
     border-radius: 6px;
+}
+
+.ProductReviewsCardZeroContaier {
+    display: grid;
+    justify-content: center;
+}
+
+.ProductReviewsCardZeroContaier h3 {
+    text-align: center;
+}
+
+.ProductReviewsCardZeroContant img {
+    width: 350px;
 }

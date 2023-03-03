@@ -10,8 +10,22 @@
     height: 100%;
     border: 2px solid rgb(8, 0, 57);
     border-radius: 6px;
-    box-shadow: 0px 0px 15px rgb(8 0 57);
+    box-shadow: 0px 0px 12px rgb(8 0 57);
     display: grid;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.styleCard:hover {
+    box-shadow: 0px 0px 20px rgb(8 0 57);
+}
+
+.discountImg {
+    width: 1000px;
+    position: absolute;
+    top: -165px;
+    left: -259px;
+    z-index: 9999;
 }
 
 .descriptionCardPorduct {
@@ -45,17 +59,15 @@
 .styleCard button {
     background: #FF8900;
     color: rgb(8, 0, 57);
-    text-decoration: none;
     border-radius: 6px;
     display: block;
-    width: auto;
     text-align: center;
-    font-weight: 600;
     margin: 20px auto;
-    padding: 10px 10px;
     transition: all 0.3s;
     cursor: pointer;
-    padding: 15px;
+    padding: 25px;
+    font-size: 18px;
+    margin-bottom: -30px;
 }
 
 .styleCard button:hover {
@@ -76,13 +88,14 @@
 
 .styleButtonCardProduct {
     display: flex;
+    align-items: baseline;
 }
 
 .styleCard p {
     padding: -50px;
 }
 
-p span {
+span {
     color: rgb(8, 0, 57);
     font-weight: 800;
 }
@@ -102,4 +115,26 @@ p span {
 .styleCard a:hover {
     text-decoration: none;
     color: #FF8900;
+}
+
+.priceWithoutDiscount {
+    text-decoration: line-through black 1px;
+    padding-right: 10px;
+    padding-left: 15px;
+}
+
+
+.priceCardProduct {
+    display: flex;
+    align-items: center;
+    margin-top: -19px;
+}
+
+.priceWithoutDiscountTap {
+    padding-right: 10px;
+    color: #c70000;
+}
+
+.justPrice {
+    padding-left: 10px;
 }

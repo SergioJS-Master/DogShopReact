@@ -13,6 +13,7 @@ import { Modal } from '../../Modal/Modal'
 import { EdditAddProduct } from './EdditAddProduct/EdditAddProduct'
 import ProductDetailStyles from './ProductDetail.module.css'
 import { ReviewsAddProduct } from './ReviewsAddProduct/ReviewsAddProduct'
+import logoTwo from '../../Img/logoTwo.png'
 
 export function ProductDetail() {
   const navigate = useNavigate()
@@ -169,7 +170,7 @@ export function ProductDetail() {
           </p>
           <ReviewsAddProduct />
           <div className={ProductDetailStyles.ProductDetailStylesReviewsContainer}>
-            {data.reviews.map((e) => (
+            {data.reviews.length > 0 ? (data.reviews.map((e) => (
               <div className={ProductDetailStyles.ProductDetailOnReviewsCard}>
                 <div className={ProductDetailStyles.created_at}>
                   <div>
@@ -204,7 +205,16 @@ export function ProductDetail() {
                   </p>
                 </div>
               </div>
-            )).reverse()}
+            ))).reverse() : (
+              <div className={ProductDetailStyles.ProductReviewsCardZeroContaier}>
+                <div className={ProductDetailStyles.ProductReviewsCardZeroContant}>
+                  <hr />
+                  <h3>Отзывов нет, будьте первыми!</h3>
+                  <hr />
+                  <img src={logoTwo} alt="logo" />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -215,6 +225,5 @@ export function ProductDetail() {
         <EdditAddProduct />
       </Modal>
     </div>
-
   )
 }

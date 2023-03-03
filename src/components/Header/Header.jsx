@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import classNames from 'classnames'
 import headerStyle from './Header.module.css'
 import logoHeaderOne from '../Img/logoOne.png'
 import { Search } from './Search/Search'
@@ -35,14 +36,20 @@ export function Header() {
           <div className={headerStyle.liHeaderBtn}>
             <div>
               <li>
-                <NavLink to="/products">
+                <NavLink
+                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                  to="/products"
+                >
                   <i className="fa-solid fa-bars" />
                 </NavLink>
               </li>
             </div>
             <div className={headerStyle.headerLogoLink}>
               <li>
-                <NavLink to="/">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                >
                   <img src={logoHeaderOne} alt="" />
                 </NavLink>
               </li>
@@ -52,14 +59,18 @@ export function Header() {
             <div className={headerStyle.searchStyle}>
               <div>
                 <li>
-                  <NavLink to="/products">
+                  <NavLink
+                    to="/products"
+                  >
                     <Search />
                   </NavLink>
                 </li>
               </div>
               <div className={headerStyle.searchStyle}>
                 <li>
-                  <NavLink onClick={openModalHandler}>
+                  <NavLink
+                    onClick={openModalHandler}
+                  >
                     <i className="fa-solid fa-wand-magic-sparkles" />
                   </NavLink>
                 </li>
@@ -67,7 +78,10 @@ export function Header() {
             </div>
             <div className={headerStyle.basketButtonStyle}>
               <li>
-                <NavLink to="/basket">
+                <NavLink
+                  to="/basket"
+                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                >
                   <i className="fa-solid fa-basket-shopping" />
                 </NavLink>
                 <div className={headerStyle.basketProductLength}>
@@ -77,7 +91,12 @@ export function Header() {
             </div>
             <div className={headerStyle.favoriteButtonStyle}>
               <li>
-                <NavLink to="/favorite"><i className="fa-solid fa-heart" /></NavLink>
+                <NavLink
+                  to="/favorite"
+                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                >
+                  <i className="fa-solid fa-heart" />
+                </NavLink>
                 <div className={headerStyle.basketProductLengthFavorite}>
                   {arrProductInFavorite.length > 0 && <p>{arrProductInFavorite.length}</p>}
                 </div>
@@ -85,12 +104,23 @@ export function Header() {
             </div>
             <div>
               <li>
-                <NavLink to="/user"><i className="fa-solid fa-user" /></NavLink>
+                <NavLink
+                  to="/user"
+                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                >
+                  <i className="fa-solid fa-user" />
+
+                </NavLink>
               </li>
             </div>
             <div>
               <li>
-                <NavLink to="/signup">Регистрация</NavLink>
+                <NavLink
+                  to="/signup"
+                >
+                  Регистрация
+
+                </NavLink>
               </li>
             </div>
             <div>

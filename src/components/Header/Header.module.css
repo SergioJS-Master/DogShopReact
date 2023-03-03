@@ -131,3 +131,7 @@ ul {
     font-weight: 1000;
     border-radius: 50px;
 }
+
+.activeLink i {
+    color: #FF8900;
+}

@@ -53,7 +53,7 @@ function ShowAllProductsDetail({ data }) {
   }, [data.products])
 
   return (
-    <div>
+    <div className={productPageStyles.test}>
       {/* {!data.length === 0 && (
       <div className={productPageStyles.searchZeroErrorBlock}>
         <div className={productPageStyles.searchZeroError}>
@@ -63,28 +63,38 @@ function ShowAllProductsDetail({ data }) {
         </div>
       </div>
       )} */}
-
-      <div>
-        <button type="button" onClick={() => productSort('filterPriceUp')}>
-          По уменьшению
-        </button>
-        <button type="button" onClick={() => productSort('filterPriceDown')}>
-          По увеличению
-        </button>
-
-        <button type="button" onClick={() => productSort('filterDiscountUp')}>
-          Скидка по уменьшению
-        </button>
-        <button type="button" onClick={() => productSort('filterDiscountDown')}>
-          Скидка по увеличению
-        </button>
-
-        <button type="button" onClick={() => productSort('filterCreated_atUp')}>
-          Дата по уменьшению
-        </button>
-        <button type="button" onClick={() => productSort('filterCreated_atDown')}>
-          Дата по увеличению
-        </button>
+      <div className={productPageStyles.filterButtonStyleBlock}>
+        <div className={productPageStyles.filterButtonStyleBorder}>
+          <div className={productPageStyles.filterButtonStyle}>
+            <div className={productPageStyles.filterButtonPrice}>
+              <p>По цене</p>
+              <button type="button" onClick={() => productSort('filterPriceUp')}>
+                По уменьшению
+              </button>
+              <button type="button" onClick={() => productSort('filterPriceDown')}>
+                По увеличению
+              </button>
+            </div>
+            <div className={productPageStyles.filterButtonDiscount}>
+              <p>По скидке</p>
+              <button type="button" onClick={() => productSort('filterDiscountUp')}>
+                Скидка по уменьшению
+              </button>
+              <button type="button" onClick={() => productSort('filterDiscountDown')}>
+                Скидка по увеличению
+              </button>
+            </div>
+            <div className={productPageStyles.filterButtonCreated_atUp}>
+              <p>По дате</p>
+              <button type="button" onClick={() => productSort('filterCreated_atUp')}>
+                Дата по уменьшению
+              </button>
+              <button type="button" onClick={() => productSort('filterCreated_atDown')}>
+                Дата по увеличению
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div className={productPageStyles.productsContainer}>
         {sortProducts.map(({ _id: id, ...restProduct }) => (

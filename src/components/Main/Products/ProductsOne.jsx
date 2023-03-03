@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import productsStyles from './Products.module.css'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
+// import sale from '../../Img/sale.png'
 
 export function ProductOne({
   pictures, discount, stock, price, description, name, id,
@@ -30,21 +31,34 @@ export function ProductOne({
           <div className={productsStyles.productImg}>
             <img src={pictures} alt="" />
           </div>
+          {/* <div>
+            {discount > 0 && (
+              <img className={productsStyles.discountImg} src={sale} alt="logo" />
+            )}
+          </div> */}
           <hr />
         </Link>
-        <p>
-          <span>Цена: </span>
-          {price}
-          {' '}
-          <span> ₽</span>
-        </p>
         <p>
           <span>Скидка: </span>
           {discount}
           <span> %</span>
         </p>
+        <div className={productsStyles.priceCardProduct}>
+          <span>Цена:  </span>
+          {discount > 0 && (
+            <h4 className={productsStyles.priceWithoutDiscount}>
+              {' '}
+              <span className={productsStyles.priceWithoutDiscountTap}>{discount > 0 && `${price} ₽`}</span>
+              {' '}
+            </h4>
+          )}
+          <h3>
+            {discount > 0 && `${(price * (100 - discount)) / 100} ₽`}
+            <span className={productsStyles.justPrice}>{discount === 0 && `${price} ₽`}</span>
+          </h3>
+        </div>
         <p>
-          <span>Количество: </span>
+          <span>В наличии: </span>
           {stock}
           <span> шт.</span>
         </p>

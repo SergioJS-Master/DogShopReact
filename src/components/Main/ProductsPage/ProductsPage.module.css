@@ -6,12 +6,12 @@
 .productsContainer {
     font-family: Georgia, serif;
     margin-top: 0;
+    margin-bottom: 50px;
     background-color: rgb(255, 255, 255);
     width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -31,6 +31,67 @@
     height: 100px;
     width: 350px;
     background-color: rgb(8, 0, 57);
+    color: white;
+    border-radius: 6px;
+}
+
+.filterButtonStyle {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
+    font-family: Georgia, serif;
+    /* background-color: aqua; */
+}
+
+.filterButtonStyle button {
+    margin: 5px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    background-color: rgb(8, 0, 57);
+    box-shadow: 0px 0px 5px rgb(8 0 57);
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+}
+
+.filterButtonStyleBorder {
+    border: 3px solid #FF8900;
+    box-shadow: 0px 0px 10px #d87300;
+    margin-top: 20px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1250px;
+}
+
+.filterButtonStyleBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.filterButtonPrice {
+    margin-right: 20px;
+}
+
+.filterButtonDiscount {
+    margin-right: 20px;
+}
+
+.filterButtonStyle p {
+    text-align: center;
+    margin-top: -10px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: #FF8900;
+    border: 1px solid #d87300;
+    box-shadow: 0px 0px 5px #d87300;
+    text-decoration: none;
     color: white;
     border-radius: 6px;
 }
