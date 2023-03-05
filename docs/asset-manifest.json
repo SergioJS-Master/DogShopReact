@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "./static/css/main.431b99ba.css",
-    "main.js": "./static/js/main.2ddfdba5.js",
+    "main.css": "./static/css/main.556117a7.css",
+    "main.js": "./static/js/main.1c27115d.js",
     "static/media/fonSignUp.jpg": "./static/media/fonSignUp.8ad1277488d29a4a0559.jpg",
     "static/media/blackStar.jpg": "./static/media/blackStar.57a31121cfde1d663e74.jpg",
     "static/media/logoSignIn.jpg": "./static/media/logoSignIn.d443c27d5cbe2ecb4881.jpg",
     "static/media/fonMainDog.jpg": "./static/media/fonMainDog.caaab13f0c9a21ac9d2e.jpg",
     "static/media/star.png": "./static/media/star.87a1a04f8bdabf52c24a.png",
     "static/media/logoOne.png": "./static/media/logoOne.ca4ace097c69dfe8b1a8.png",
+    "static/media/logo3.png": "./static/media/logo3.f7230b49821c0a39985e.png",
     "static/media/logoTwo.png": "./static/media/logoTwo.3176d10ba727bb4882e9.png",
     "index.html": "./index.html",
-    "main.431b99ba.css.map": "./static/css/main.431b99ba.css.map",
-    "main.2ddfdba5.js.map": "./static/js/main.2ddfdba5.js.map"
+    "main.556117a7.css.map": "./static/css/main.556117a7.css.map",
+    "main.1c27115d.js.map": "./static/js/main.1c27115d.js.map"
   },
   "entrypoints": [
-    "static/css/main.431b99ba.css",
-    "static/js/main.2ddfdba5.js"
+    "static/css/main.556117a7.css",
+    "static/js/main.1c27115d.js"
   ]
 }

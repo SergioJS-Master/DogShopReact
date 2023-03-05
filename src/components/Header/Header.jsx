@@ -16,11 +16,13 @@ export function Header() {
   const arrProductInBasket = useSelector(getBasketSelector)
   const arrProductInFavorite = useSelector(getFavoriteSelector)
   const token = useSelector(getTokenSelector)
-  const kikUser = () => {
+  const kickUser = () => {
     dispatch(removeUser())
   }
 
   const [isOpenModal, setIsOpenModal] = useState(false)
+
+  // const closeModalByClickX = () => closeHandler()
 
   const closeModalHandler = () => {
     setIsOpenModal(false)
@@ -128,7 +130,7 @@ export function Header() {
                 <li>
                   <NavLink
                     to="/signin"
-                    onClick={kikUser}
+                    onClick={kickUser}
                   >
                     Выйти
                   </NavLink>
@@ -146,9 +148,24 @@ export function Header() {
           </div>
         </ul>
       </nav>
-      <Modal isOpen={isOpenModal} closeHandler={closeModalHandler}>
+      {token && (
+      <Modal
+        isOpen={isOpenModal}
+        closeHandler={closeModalHandler}
+        className={headerStyle.modal}
+      >
+        <div className={headerStyle.buttonCloseX}>
+          <button
+            type="button"
+            onClick={closeModalHandler}
+          >
+            X
+          </button>
+        </div>
+
         <AddProduct />
       </Modal>
+      )}
     </header>
   )
 }

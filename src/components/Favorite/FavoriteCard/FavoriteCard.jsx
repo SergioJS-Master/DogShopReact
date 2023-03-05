@@ -59,12 +59,10 @@ export function FavoriteCard({
               disabled={oneProduct}
             >
               В корзину
-
             </button>
           </div>
         </div>
       </div>
-
     </div>
   )
 }

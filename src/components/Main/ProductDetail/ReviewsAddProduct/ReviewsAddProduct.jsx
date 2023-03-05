@@ -47,33 +47,44 @@ export function ReviewsAddProduct() {
       onSubmit={submitHandler}
     >
       {({ setFieldValue }) => (
-        <Form>
-          <h2>Оставьте отзыв:</h2>
-          <Field
-            name="text"
-            placeholder="Оставьте отзыв"
-            type="text"
-          />
-          <ErrorMessage name="text" />
-          <div className={ReviewsAddProductStyle.ratingStarStyle}>
-            {arrStar.map((_, index) => (
+        <div className={ReviewsAddProductStyle.formContainer}>
+          <div className={ReviewsAddProductStyle.formContant}>
+            <h2>Оставьте отзыв</h2>
+            <Form>
+              <Field
+                name="text"
+                placeholder="Оставьте отзыв"
+                type="text"
+                className={ReviewsAddProductStyle.formTextStringStyle}
+              />
+              <ErrorMessage name="text" />
+              <div className={ReviewsAddProductStyle.ratingStarStyle}>
+                {arrStar.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => {
+                      setRating(index + 1)
+                      setFieldValue('rating', index + 1)
+                    }}
+                  >
+                    <img
+                      src={index + 1 <= rating ? `${star}` : `${blackStar}`}
+                      alt="icon-start"
+                    />
+                  </button>
+                ))}
+              </div>
               <button
-                key={index}
-                type="button"
-                onClick={() => {
-                  setRating(index + 1)
-                  setFieldValue('rating', index + 1)
-                }}
+                className={ReviewsAddProductStyle.formButtonStyle}
+                type="submit"
               >
-                <img
-                  src={index + 1 <= rating ? `${star}` : `${blackStar}`}
-                  alt="icon-start"
-                />
+                Оставить отзыв
+
               </button>
-            ))}
+            </Form>
           </div>
-          <button type="submit">Оставить отзыв</button>
-        </Form>
+        </div>
       )}
     </Formik>
   )

@@ -39,6 +39,7 @@ export function AddProduct() {
   if (isLoading) {
     return <Loader />
   }
+
   return (
     <div className={addProductStyles.formStyles}>
       <Formik
@@ -48,10 +49,12 @@ export function AddProduct() {
       >
         <Form>
           <h2>Добавьте продукт:</h2>
+          <hr />
           <Field
             name="price"
             placeholder="Цена"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="price" />
 
@@ -59,6 +62,7 @@ export function AddProduct() {
             name="wight"
             placeholder="Вес товара"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="wight" />
 
@@ -66,6 +70,7 @@ export function AddProduct() {
             name="description"
             placeholder="Описание"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="description" />
 
@@ -73,6 +78,7 @@ export function AddProduct() {
             name="discount"
             placeholder="Скидка"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="discount" />
 
@@ -80,6 +86,7 @@ export function AddProduct() {
             name="stock"
             placeholder="Количество"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="stock" />
 
@@ -87,6 +94,7 @@ export function AddProduct() {
             name="pictures"
             placeholder="URL"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="pictures" />
 
@@ -94,9 +102,17 @@ export function AddProduct() {
             name="name"
             placeholder="Название товара"
             type="text"
+            className={addProductStyles.formTypeStyles}
           />
           <ErrorMessage name="name" />
-          <button type="submit">Оставить отзыв</button>
+          <hr />
+          <button
+            type="submit"
+            className={addProductStyles.formButton}
+          >
+            Добавить
+
+          </button>
         </Form>
       </Formik>
     </div>

@@ -135,3 +135,19 @@ ul {
 .activeLink i {
     color: #FF8900;
 }
+
+.modal {
+    padding: 200px;
+}
+
+.buttonCloseX {
+    position: relative;
+}
+
+.buttonCloseX button {
+    position: absolute;
+    top: 7px;
+    left: 395px;
+    border-radius: 6px;
+    background-color: #990000;
+}

@@ -62,22 +62,29 @@ export function FavoriteTitle() {
   }
 
   return (
-    <div className={favoriteTitleStyle.favoriteTitleBlock}>
-      <div className={favoriteTitleStyle.test}>
+    <div className={favoriteTitleStyle.favoriteTitleBlockAll}>
+      <div className={favoriteTitleStyle.favoriteTitleHeaderText}>
+        <h2>● Избранное ●</h2>
+      </div>
+      <div className={favoriteTitleStyle.favoriteTitleBorder}>
+        <div className={favoriteTitleStyle.favoriteTitleBlock}>
+          <div className={favoriteTitleStyle.test}>
 
-        {data.map((item) => (
-          <FavoriteCard
-            pictures={item.pictures}
-            index={item.index}
-            key={item._id}
-            id={item._id}
-            name={item.name}
-            price={item.price}
-            discount={item.discount}
-            stock={item.stock}
-          />
-        ))}
+            {data.map((item) => (
+              <FavoriteCard
+                pictures={item.pictures}
+                index={item.index}
+                key={item._id}
+                id={item._id}
+                name={item.name}
+                price={item.price}
+                discount={item.discount}
+                stock={item.stock}
+              />
+            ))}
 
+          </div>
+        </div>
       </div>
     </div>
   )

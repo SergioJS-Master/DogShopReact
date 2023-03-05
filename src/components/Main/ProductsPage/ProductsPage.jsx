@@ -11,7 +11,7 @@ import { getSearchSelector } from '../../../redux/slices/filterSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
 
 function ShowAllProductsDetail({ data }) {
-  const [sortProducts, setSortProducts] = useState(data.products)
+  const [sortProducts, setSortProducts] = useState(data)
   const [sortParams, setSortParams] = useSearchParams()
 
   const productSort = (value) => {
@@ -23,34 +23,34 @@ function ShowAllProductsDetail({ data }) {
     })
 
     if (value === 'filterPriceUp') {
-      const priceUp = [...data.products].sort((a, b) => a.price - b.price)
+      const priceUp = [...data].sort((a, b) => a.price - b.price)
       setSortProducts(priceUp)
     }
     if (value === 'filterPriceDown') {
-      const priceDown = [...data.products].sort((a, b) => b.price - a.price)
+      const priceDown = [...data].sort((a, b) => b.price - a.price)
       setSortProducts(priceDown)
     }
     if (value === 'filterDiscountDown') {
-      const discountDown = [...data.products].sort((a, b) => b.discount - a.discount)
+      const discountDown = [...data].sort((a, b) => b.discount - a.discount)
       setSortProducts(discountDown)
     }
     if (value === 'filterDiscountUp') {
-      const discountUp = [...data.products].sort((a, b) => a.discount - b.discount)
+      const discountUp = [...data].sort((a, b) => a.discount - b.discount)
       setSortProducts(discountUp)
     }
     if (value === 'filterCreated_atDown') {
-      const createdatDown = [...data.products].sort((a, b) => (b.created_at > a.created_at ? 1 : -1))
+      const createdatDown = [...data].sort((a, b) => (b.created_at > a.created_at ? 1 : -1))
       setSortProducts(createdatDown)
     }
     if (value === 'filterCreated_atUp') {
-      const createdatUp = [...data.products].sort((a, b) => (a.created_at > b.created_at ? 1 : -1))
+      const createdatUp = [...data].sort((a, b) => (a.created_at > b.created_at ? 1 : -1))
       setSortProducts(createdatUp)
     }
   }
 
   useEffect(() => {
-    setSortProducts(data.products)
-  }, [data.products])
+    setSortProducts(data)
+  }, [data])
 
   return (
     <div className={productPageStyles.test}>

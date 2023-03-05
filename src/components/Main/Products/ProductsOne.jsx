@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import productsStyles from './Products.module.css'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
-// import sale from '../../Img/sale.png'
+import sale from '../../Img/logo3.png'
 
 export function ProductOne({
   pictures, discount, stock, price, description, name, id,
@@ -31,11 +31,11 @@ export function ProductOne({
           <div className={productsStyles.productImg}>
             <img src={pictures} alt="" />
           </div>
-          {/* <div>
+          <div>
             {discount > 0 && (
               <img className={productsStyles.discountImg} src={sale} alt="logo" />
             )}
-          </div> */}
+          </div>
           <hr />
         </Link>
         <p>

@@ -64,7 +64,7 @@ class DogShopApi {
 
   // Запрос на получение продуктов
   async getShowAllProducts(search, token) {
-    const res = await fetch(`${this.baseUrl}/products?query=${search}`, {
+    const res = await fetch(`${this.baseUrl}/products/search?query=${search}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -162,6 +162,16 @@ class DogShopApi {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(values),
+    })
+    return res.json()
+  }
+
+  // получение отзывов конкрентного товара
+  async getReviewsById(token, productId) {
+    const res = await fetch(`${this.baseUrl}/products/review/${productId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     })
     return res.json()
   }

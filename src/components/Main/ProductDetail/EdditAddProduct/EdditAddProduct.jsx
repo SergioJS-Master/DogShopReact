@@ -54,6 +54,7 @@ export function EdditAddProduct() {
             name="price"
             placeholder="Цена"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="price" />
 
@@ -61,6 +62,7 @@ export function EdditAddProduct() {
             name="wight"
             placeholder="Вес товара"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="wight" />
 
@@ -68,6 +70,7 @@ export function EdditAddProduct() {
             name="description"
             placeholder="Описание"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="description" />
 
@@ -75,6 +78,7 @@ export function EdditAddProduct() {
             name="discount"
             placeholder="Скидка"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="discount" />
 
@@ -82,6 +86,7 @@ export function EdditAddProduct() {
             name="stock"
             placeholder="Количество"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="stock" />
 
@@ -89,6 +94,7 @@ export function EdditAddProduct() {
             name="pictures"
             placeholder="URL"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="pictures" />
 
@@ -96,9 +102,16 @@ export function EdditAddProduct() {
             name="name"
             placeholder="Название товара"
             type="text"
+            className={edditProductStyles.formTypeStyles}
           />
           <ErrorMessage name="name" />
-          <button type="submit">Редактировать</button>
+          <button
+            className={edditProductStyles.formButton}
+            type="submit"
+          >
+            Редактировать
+
+          </button>
         </Form>
       </Formik>
     </div>

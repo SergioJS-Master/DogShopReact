@@ -52,7 +52,6 @@ export function ProductDetail() {
     queryFn: () => dogShopApi.getDetailsProduct(productId, token),
   })
 
-  console.log(data)
   // запрос на удаление товара
   const { mutateAsync } = useMutation({
     mutationFn: () => dogShopApi.deleteMyProduct(productId, token),
@@ -71,9 +70,18 @@ export function ProductDetail() {
     dispatch(favoriteAdd(data._id))
   }
 
-  if (isLoading) {
+  const {
+    data: dataId, isLoading: isLoadingReviewsId,
+  } = useQuery({
+    queryKey: ['DetailReviewId'],
+    queryFn: () => dogShopApi.getReviewsById(token, productId),
+  })
+
+  if (isLoading || isLoadingReviewsId) {
     return <Loader />
   }
+
+  console.log(dataId)
 
   const oneProduct = details.map(({ id }) => id).includes(data._id)
   const oneProductInFavorite = favorite.map(({ id }) => id).includes(data._id)
@@ -170,17 +178,16 @@ export function ProductDetail() {
           </p>
           <ReviewsAddProduct />
           <div className={ProductDetailStyles.ProductDetailStylesReviewsContainer}>
-            {data.reviews.length > 0 ? (data.reviews.map((e) => (
-              <div className={ProductDetailStyles.ProductDetailOnReviewsCard}>
+            {data.reviews.length > 0 ? (dataId.map((e) => (
+              <div key={e._id} className={ProductDetailStyles.ProductDetailOnReviewsCard}>
                 <div className={ProductDetailStyles.created_at}>
                   <div>
-                    <img src={data.author.avatar} alt="logo" className={ProductDetailStyles.avatarStyle} />
+                    <img src={e.author.avatar} alt="logo" className={ProductDetailStyles.avatarStyle} />
                     <p>
                       <span>Автор: </span>
-                      {e.author}
+                      {e.author.name}
                     </p>
                   </div>
-
                   <p>
                     {' '}
                     <span>Дата отзыва: </span>
@@ -219,9 +226,34 @@ export function ProductDetail() {
         </div>
       </div>
       <Modal isOpen={isOpenModal} closeHandler={closeModalHandler} className={ProductDetailStyles.modalDeleteButton}>
-        <button onClick={removeHandler}>Удалить</button>
+        <div className={ProductDetailStyles.buttonCloseDeleteX}>
+          <button
+            type="button"
+            onClick={closeModalHandler}
+            className={ProductDetailStyles.x}
+          >
+            X
+          </button>
+          <p>Вы действительно хотите удалить товар?</p>
+          <button
+            className={ProductDetailStyles.xModalDelete}
+            onClick={removeHandler}
+          >
+            Удалить
+
+          </button>
+        </div>
       </Modal>
       <Modal isOpen={isOpenModalForm} closeHandler={closeModalHandlerForm}>
+        <div className={ProductDetailStyles.buttonCloseX}>
+          <button
+            type="button"
+            onClick={closeModalHandlerForm}
+            className={ProductDetailStyles.xForm}
+          >
+            X
+          </button>
+        </div>
         <EdditAddProduct />
       </Modal>
     </div>

@@ -30,7 +30,6 @@ export function BasketTitle() {
   }
 
   const basket = useSelector(getBasketSelector)
-  console.log({ basket })
   const ids = basket.map((item) => item.id)
 
   console.log(ids)
@@ -113,21 +112,6 @@ export function BasketTitle() {
     )
   }
 
-  // if (data === undefined) {
-  //   return (
-  //     <div className={basketPorductCardStyles.errorAutorisationContainer}>
-  //       <div className={basketPorductCardStyles.errorAutorisationStyle}>
-  //         <h2>Необходимо авторизоваться для просмотра корзины</h2>
-  //         <div>
-  //           <NavLink to="/signin">
-  //             <button className="table-empty__button">Перейти в раздел авторизации</button>
-  //           </NavLink>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
-  // }
-
   if (isLoading) {
     return (
       <Loader />
@@ -142,6 +126,7 @@ export function BasketTitle() {
   const goodsQuantity = data.filter((e) => e.isChecked === true).reduce((sum, e) => sum + e.count, 0)
   const totalDiscount = data.filter((e) => e.isChecked === true).reduce((sum, e) => sum + ((e.price * e.discount) / 100) * e.count, 0)
   const totalPrice = data.filter((e) => e.isChecked === true).reduce((sum, e) => sum + (e.price - (e.price * e.discount) / 100) * e.count, 0)
+
   return (
     <div>
 
@@ -162,7 +147,7 @@ export function BasketTitle() {
       )}
 
       {basket.length > 0 && (
-        <div>
+        <div className={basketPorductCardStyles.test}>
           <div className={basketPorductCardStyles.namePageBasket}>
             <h1>• Корзина •</h1>
           </div>
@@ -262,8 +247,23 @@ export function BasketTitle() {
         </div>
       )}
       <Modal isOpen={isOpenModal} closeHandler={closeModalHandlre}>
-        <p>Вы уверены что хотите уделить товар(ы)</p>
-        <button onClick={basketButtonDeleteProductCheckbox}>Удалить?</button>
+        <div className={basketPorductCardStyles.buttonCloseDeleteX}>
+          <button
+            type="button"
+            onClick={closeModalHandlre}
+            className={basketPorductCardStyles.x}
+          >
+            X
+          </button>
+          <p>Вы действительно хотите удалить выбранные товары?</p>
+          <button
+            onClick={basketButtonDeleteProductCheckbox}
+            className={basketPorductCardStyles.xModalDelete}
+          >
+            Удалить
+
+          </button>
+        </div>
       </Modal>
     </div>
   )

@@ -1,8 +1,42 @@
 .formStyles {
-    background-color: brown;
+    background-color: rgb(8, 0, 57);
+    padding: 25px;
+    border-radius: 6px;
     display: grid;
 }
 
 .formStyles form {
     display: grid;
+    margin: 20px;
+    font-family: Georgia, serif;
+    color: rgb(8, 0, 57);
+}
+
+.formTypeStyles {
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 6px;
+    border: none;
+    border: 1px solid #aaa;
+}
+
+.formButton {
+    background: #FF8900;
+    color: rgb(8, 0, 57);
+    border-radius: 6px;
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 18px;
+    margin-bottom: -20px;
+    font-family: Georgia, serif;
+}
+
+.formButton:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
 }

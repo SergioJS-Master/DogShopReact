@@ -175,3 +175,57 @@
 .basketLinkStyle a:hover {
     color: #FF8900;
 }
+
+
+.buttonCloseX {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonCloseX button {
+    position: absolute;
+    top: 7px;
+    left: 484px;
+    border-radius: 6px;
+    background-color: #990000;
+}
+
+.buttonCloseDeleteX {
+    background-color: rgb(8, 0, 57);
+    text-align: center;
+    color: white;
+    font-family: Georgia, serif;
+    padding: 30px;
+    border-radius: 6px;
+    display: grid;
+    justify-items: center;
+    position: relative;
+}
+
+.buttonСonfirmation {
+    margin-right: 20px;
+    background: #FF8900;
+    color: rgb(8, 0, 57);
+    text-decoration: none;
+    border-radius: 6px;
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    font-family: Georgia, serif;
+}
+
+.buttonСonfirmation:hover {
+    box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
+}
+
+.buttonCloseX {
+    position: absolute;
+    top: 7px;
+    left: 337px;
+    background-color: #990000;
+    border-radius: 6px;
+}

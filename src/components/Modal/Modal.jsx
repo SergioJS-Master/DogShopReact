@@ -18,11 +18,8 @@ function ModalInner({ children, closeHandler }) {
     }
   }, [])
 
-  const closeModalByClickX = () => closeHandler()
-
   return (
-    <div>
-      <button type="button" onClick={closeModalByClickX}>X</button>
+    <div className={stylesModalWr.modalstyle}>
       {children}
     </div>
   )

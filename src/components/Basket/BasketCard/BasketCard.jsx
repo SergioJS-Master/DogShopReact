@@ -108,7 +108,23 @@ export function BasketCard({
         </div>
       </div>
       <Modal isOpen={isOpen} closeHandler={closeModalHandler}>
-        <button type="button" onClick={basketRemoveProductOne}>Удалить</button>
+        <div className={basketCardStyle.buttonCloseDeleteX}>
+          <p>Вы действительно хотите удалить товар?</p>
+          <button
+            onClick={basketRemoveProductOne}
+            className={basketCardStyle.buttonСonfirmation}
+          >
+            Удалить
+
+          </button>
+          <button
+            type="button"
+            onClick={closeModalHandler}
+            className={basketCardStyle.buttonCloseX}
+          >
+            X
+          </button>
+        </div>
       </Modal>
     </div>
   )
