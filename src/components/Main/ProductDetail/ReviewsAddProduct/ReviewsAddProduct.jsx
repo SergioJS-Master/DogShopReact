@@ -33,7 +33,7 @@ export function ReviewsAddProduct() {
   const submitHandler = async (values) => {
     await mutateAsync(values)
     queryClient.invalidateQueries({
-      queryKey: ['Detail'],
+      queryKey: ['DetailReviewId'],
     })
   }
 

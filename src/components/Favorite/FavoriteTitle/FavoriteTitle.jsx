@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { dogShopApi } from '../../../api/DogShopApi'
 import { getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
@@ -16,10 +16,7 @@ export function FavoriteTitle() {
   const token = useSelector(getTokenSelector)
   const favorite = useSelector(getFavoriteSelector)
   const ids = favorite.map((item) => item.id)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  console.log(dispatch)
 
   useEffect(() => {
     if (!token) {

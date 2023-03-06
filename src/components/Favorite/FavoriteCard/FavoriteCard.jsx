@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
 import { favoriteRemove } from '../../../redux/slices/favoriteSlice'
 import favoriteCardStyle from './FavoriteCard.module.css'
@@ -8,8 +8,6 @@ import favoriteCardStyle from './FavoriteCard.module.css'
 export function FavoriteCard({
   pictures, discount, price, name, id,
 }) {
-  const { productId } = useParams()
-  console.log(productId)
   const dispatch = useDispatch()
 
   const favorite = useSelector(getBasketSelector)

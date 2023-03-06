@@ -32,7 +32,6 @@ export function BasketTitle() {
   const basket = useSelector(getBasketSelector)
   const ids = basket.map((item) => item.id)
 
-  console.log(ids)
   const changeInputAllCar = basket.every((item) => item.isChecked)
   const checkedOne = basket.some((item) => item.isChecked)
 
@@ -85,8 +84,6 @@ export function BasketTitle() {
     queryKey: ['basket', basket],
     queryFn: () => dogShopApi.getProductsByIds(ids, token),
   })
-
-  console.log('>>>>>', { data })
 
   if (error) {
     return (
@@ -184,7 +181,7 @@ export function BasketTitle() {
                     <BasketCard
                       pictures={item.pictures}
                       index={item.index}
-                      key={item.key}
+                      key={item._id}
                       id={item._id}
                       name={item.name}
                       price={item.price}

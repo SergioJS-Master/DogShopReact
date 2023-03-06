@@ -22,12 +22,10 @@ export function User() {
     queryKey: ['user'],
     queryFn: () => dogShopApi.getUserInfo(token),
   })
-  console.log({ data })
   if (isLoading) {
     return <Loader />
   }
 
-  console.log({ data })
   return (
     <div className={userStyles.userBorederBlock}>
       <div className={userStyles.userContainer}>

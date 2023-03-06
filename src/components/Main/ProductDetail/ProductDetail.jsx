@@ -52,6 +52,14 @@ export function ProductDetail() {
     queryFn: () => dogShopApi.getDetailsProduct(productId, token),
   })
 
+  // запрос на получение конкретного отзыва по id
+  const {
+    data: dataId, isLoading: isLoadingReviewsId,
+  } = useQuery({
+    queryKey: ['DetailReviewId'],
+    queryFn: () => dogShopApi.getReviewsById(token, productId),
+  })
+
   // запрос на удаление товара
   const { mutateAsync } = useMutation({
     mutationFn: () => dogShopApi.deleteMyProduct(productId, token),
@@ -70,18 +78,9 @@ export function ProductDetail() {
     dispatch(favoriteAdd(data._id))
   }
 
-  const {
-    data: dataId, isLoading: isLoadingReviewsId,
-  } = useQuery({
-    queryKey: ['DetailReviewId'],
-    queryFn: () => dogShopApi.getReviewsById(token, productId),
-  })
-
   if (isLoading || isLoadingReviewsId) {
     return <Loader />
   }
-
-  console.log(dataId)
 
   const oneProduct = details.map(({ id }) => id).includes(data._id)
   const oneProductInFavorite = favorite.map(({ id }) => id).includes(data._id)
@@ -91,7 +90,7 @@ export function ProductDetail() {
       <div className={ProductDetailStyles.ProductDetailStylesBorder}>
         <div className={ProductDetailStyles.ProductDetailStylesContainer}>
           <div className={ProductDetailStyles.ProductDetailStylesContent}>
-            <div>
+            <div className={ProductDetailStyles.ProductDetailImg}>
               <img src={data.pictures} alt="logo" />
             </div>
             <div>
