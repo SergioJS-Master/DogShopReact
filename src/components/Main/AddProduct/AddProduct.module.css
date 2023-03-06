@@ -40,3 +40,15 @@
 .formButton:hover {
     box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
 }
+
+.error {
+    font-size: 16px;
+    font-weight: 200;
+    color: white;
+}
+
+.errorBox {
+    display: flex;
+    height: 24px;
+    opacity: .5;
+}

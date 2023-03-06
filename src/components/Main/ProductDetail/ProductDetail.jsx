@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { dogShopApi } from '../../../api/DogShopApi'
-import { basketAdd, getBasketSelector } from '../../../redux/slices/basketSlice'
-import { favoriteAdd, getFavoriteSelector } from '../../../redux/slices/favoriteSlice'
+import { basketAdd, getBasketSelector, basketRemove } from '../../../redux/slices/basketSlice'
+import { favoriteAdd, getFavoriteSelector, favoriteRemove } from '../../../redux/slices/favoriteSlice'
 import { getTokenSelector, getUserIdSelector } from '../../../redux/slices/userSlice'
 import { Loader } from '../../Loader/Loader'
 import { Modal } from '../../Modal/Modal'
@@ -67,6 +67,8 @@ export function ProductDetail() {
 
   const removeHandler = async (values) => {
     await mutateAsync(values)
+    dispatch(favoriteRemove(productId))
+    dispatch(basketRemove(productId))
     navigate('/products')
   }
 

@@ -56,7 +56,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="price" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="price" />
+          </div>
 
           <Field
             name="wight"
@@ -64,7 +66,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="wight" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="wight" />
+          </div>
 
           <Field
             name="description"
@@ -72,7 +76,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="description" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="description" />
+          </div>
 
           <Field
             name="discount"
@@ -80,7 +86,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="discount" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="discount" />
+          </div>
 
           <Field
             name="stock"
@@ -88,7 +96,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="stock" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="stock" />
+          </div>
 
           <Field
             name="pictures"
@@ -96,7 +106,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="pictures" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="pictures" />
+          </div>
 
           <Field
             name="name"
@@ -104,7 +116,9 @@ export function AddProduct() {
             type="text"
             className={addProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="name" />
+          <div className={addProductStyles.errorBox}>
+            <ErrorMessage className={addProductStyles.error} name="name" />
+          </div>
           <hr />
           <button
             type="submit"

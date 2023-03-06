@@ -56,7 +56,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="price" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="price" />
+          </div>
 
           <Field
             name="wight"
@@ -64,7 +66,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="wight" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="wight" />
+          </div>
 
           <Field
             name="description"
@@ -72,7 +76,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="description" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="description" />
+          </div>
 
           <Field
             name="discount"
@@ -80,7 +86,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="discount" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="discount" />
+          </div>
 
           <Field
             name="stock"
@@ -88,7 +96,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="stock" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="stock" />
+          </div>
 
           <Field
             name="pictures"
@@ -96,7 +106,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="pictures" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="pictures" />
+          </div>
 
           <Field
             name="name"
@@ -104,7 +116,9 @@ export function EdditAddProduct() {
             type="text"
             className={edditProductStyles.formTypeStyles}
           />
-          <ErrorMessage name="name" />
+          <div className={edditProductStyles.errorBox}>
+            <ErrorMessage className={edditProductStyles.error} name="name" />
+          </div>
           <button
             className={edditProductStyles.formButton}
             type="submit"
