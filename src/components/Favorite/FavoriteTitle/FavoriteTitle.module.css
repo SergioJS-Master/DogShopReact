@@ -52,3 +52,46 @@
     box-shadow: 0px 0px 15px #FF8900 inset;
     padding: 5px;
 }
+
+.favoriteTitleBlockAllZero {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    margin: -25px;
+}
+
+.favoriteTitleBlockContantZero {
+    background-color: rgb(8, 0, 57);
+    font-family: Georgia, serif;
+    border-radius: 6px;
+    color: white;
+    padding: 40px;
+    margin: 40px;
+}
+
+.favoriteTitleBlockContantZero a {
+    text-decoration: none;
+    color: #FF8900;
+}
+
+.favoriteTitleBlockContantZero img {
+    padding-top: 40px;
+    width: 300px;
+}
+
+.favoriteTitleBlockBorderAll {
+    border: 1px solid #FF8900;
+    box-shadow: 0px 0px 15px #FF8900 inset;
+}
+
+.favoriteTitleBlockBorderZero {
+    border: 3px solid #FF8900;
+    box-shadow: 0px 0px 15px #FF8900 inset;
+    width: 400px;
+
+}
+
+.test {
+    display: flex;
+    justify-content: center;
+}

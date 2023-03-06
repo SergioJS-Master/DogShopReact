@@ -21,10 +21,10 @@
 }
 
 .discountImg {
-    width: 90px;
+    width: 110px;
     position: absolute;
-    top: -22px;
-    left: 303px;
+    top: -30px;
+    left: 278px;
     z-index: 9999;
 }
 
