@@ -56,7 +56,7 @@ export function FavoriteCard({
               onClick={favoriteAddCardInBusket}
               disabled={oneProduct}
             >
-              В корзину
+              {oneProduct ? ('В корзину') : ('В корзине')}
             </button>
           </div>
         </div>

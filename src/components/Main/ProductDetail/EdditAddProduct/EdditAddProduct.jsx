@@ -10,23 +10,27 @@ import { Loader } from '../../../Loader/Loader'
 import edditProductStyles from './EdditAddProduct.module.css'
 import { createFormedditProduct } from './validatorEdditProduct'
 
-export function EdditAddProduct() {
+export function EdditAddProduct({
+  price, wight, description, discount, stock, pictures, name,
+}) {
   const token = useSelector(getTokenSelector)
   const { productId } = useParams()
   //   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   const initialValuesReviews = {
-    price: '',
-    wight: '',
-    description: '',
-    discount: '',
-    stock: '',
-    pictures: '',
-    name: '',
+    price,
+    wight,
+    description,
+    discount,
+    stock,
+    pictures,
+    name,
   }
 
-  const { mutateAsync, isLoading } = useMutation({
+  const {
+    mutateAsync, isLoading,
+  } = useMutation({
     mutationFn: (values) => dogShopApi.edditAddMyProduct(productId, token, values),
   })
 

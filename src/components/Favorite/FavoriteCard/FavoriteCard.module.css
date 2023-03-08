@@ -8,6 +8,7 @@
     margin-bottom: 25px;
     transition: ease-in 0.2s;
     box-shadow: 0px 0px 5px #FF8900;
+    width: 100%;
 }
 
 .favoriteCardStyleBlock:hover {

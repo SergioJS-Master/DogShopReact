@@ -1,0 +1,43 @@
+.filterContant {
+    display: flex;
+    font-family: Georgia, serif;
+}
+
+.filterBorder {
+    border: 2px solid #d87300;
+    box-shadow: 0px 0px 5px #d87300 inset;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.btnInfo {
+    background-color: rgb(8, 0, 57);
+    box-shadow: 0px 0px 5px rgb(8 0 57);
+    color: white;
+    font-family: Georgia, serif;
+    border: none;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 6px;
+    transition: ease 0.2s;
+}
+
+.btnInfo:hover {
+    box-shadow: 0px 0px 10px rgb(8 0 57);
+}
+
+.btnActive {
+    background-color: #d87300;
+    box-shadow: 0px 0px 5px rgb(8 0 57);
+    color: white;
+    font-family: Georgia, serif;
+    border: none;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 6px;
+    transition: ease 0.2s;
+}
+
+.btnActive:hover {
+    box-shadow: 0px 0px 10px rgb(8 0 57);
+}

@@ -57,6 +57,11 @@ ul {
     padding: 10px;
 }
 
+.activeLink i {
+    color: #FF8900;
+}
+
+
 .liHeaderSignInfoBtn {
     display: flex;
 }
@@ -74,15 +79,24 @@ ul {
     padding-right: 350px;
 }
 
+/* .headerLogoLinkSignOut {
+    height: 150px;
+    width: 420px;
+    position: absolute;
+    top: -21px;
+    right: -390px;
+    align-items: center;
+    z-index: 9999;
+} */
+
 .headerLogoLink img {
     height: 150px;
     width: 420px;
     position: absolute;
     top: -21px;
-    right: -345px;
+    right: -390px;
     align-items: center;
     z-index: 9999;
-
 }
 
 .headerLogoLink li {
@@ -130,10 +144,6 @@ ul {
     font-size: 21px;
     font-weight: 1000;
     border-radius: 50px;
-}
-
-.activeLink i {
-    color: #FF8900;
 }
 
 .modal {

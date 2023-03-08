@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -9,98 +9,103 @@ import { dogShopApi } from '../../../api/DogShopApi'
 import { withQuery } from '../../HOCs/withQuery'
 import { getSearchSelector } from '../../../redux/slices/filterSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlice'
+import { Filters } from '../../Filters/Filters'
+import logoTwo from '../../Img/logoTwo.png'
 
 function ShowAllProductsDetail({ data }) {
-  const [sortProducts, setSortProducts] = useState(data)
-  const [sortParams, setSortParams] = useSearchParams()
+  let products = [...data]
+  const [searchParams] = useSearchParams()
+  const currentFilterName = searchParams.get('filterName')
 
-  const productSort = (value) => {
-    const newSortValue = value
-    setSortProducts(newSortValue)
-    setSortParams({
-      ...Object.fromEntries(sortParams.entries()),
-      value: newSortValue,
-    })
+  switch (currentFilterName) {
+    case null:
+      products = [...data]
+      break
+    case 'Новинки':
+      products = products.sort((item, nextItem) => {
+        const itemTime = new Date(Date.parse(item.updated_at))
+        const nextItemTime = new Date(Date.parse(nextItem.updated_at))
+        if (itemTime > nextItemTime) {
+          return -1
+        }
+        if (itemTime < nextItemTime) {
+          return 1
+        }
+        return 0
+      })
+      break
+    case 'Скидки':
+      products = products.filter((item) => item.discount > 0).sort((item, nextItem) => {
+        if (item.discount > nextItem.discount) {
+          return -1
+        }
+        if (item.discount < nextItem.discount) {
+          return 1
+        }
+        return 0
+      })
+      break
+    case 'Дороже':
+      products = products.sort((item, nextItem) => {
+        if (item.price > nextItem.price) {
+          return -1
+        }
+        if (item.price < nextItem.price) {
+          return 1
+        }
+        return 0
+      })
+      break
+    case 'Дешевле':
+      products = products.sort((item, nextItem) => {
+        if (item.price < nextItem.price) {
+          return -1
+        }
+        if (item.price > nextItem.price) {
+          return 1
+        }
+        return 0
+      })
+      break
+    case 'Популярное':
+      products = products.sort((item, nextItem) => {
+        if (item.likes.length > nextItem.likes.length) {
+          return -1
+        }
+        if (item.likes.length < nextItem.likes.length) {
+          return 1
+        }
+        return 0
+      })
+      break
 
-    if (value === 'filterPriceUp') {
-      const priceUp = [...data].sort((a, b) => a.price - b.price)
-      setSortProducts(priceUp)
-    }
-    if (value === 'filterPriceDown') {
-      const priceDown = [...data].sort((a, b) => b.price - a.price)
-      setSortProducts(priceDown)
-    }
-    if (value === 'filterDiscountDown') {
-      const discountDown = [...data].sort((a, b) => b.discount - a.discount)
-      setSortProducts(discountDown)
-    }
-    if (value === 'filterDiscountUp') {
-      const discountUp = [...data].sort((a, b) => a.discount - b.discount)
-      setSortProducts(discountUp)
-    }
-    if (value === 'filterCreated_atDown') {
-      const createdatDown = [...data].sort((a, b) => (b.created_at > a.created_at ? 1 : -1))
-      setSortProducts(createdatDown)
-    }
-    if (value === 'filterCreated_atUp') {
-      const createdatUp = [...data].sort((a, b) => (a.created_at > b.created_at ? 1 : -1))
-      setSortProducts(createdatUp)
-    }
+    default:
+      break
   }
-
-  useEffect(() => {
-    setSortProducts(data)
-  }, [data])
 
   return (
     <div className={productPageStyles.test}>
-      {/* {!data.length === 0 && (
-      <div className={productPageStyles.searchZeroErrorBlock}>
-        <div className={productPageStyles.searchZeroError}>
-          <p>
-            По вашему запросу ничего не найдено
-          </p>
-        </div>
+      <div className={productPageStyles.filterContainer}>
+        <Filters />
       </div>
-      )} */}
-      <div className={productPageStyles.filterButtonStyleBlock}>
-        <div className={productPageStyles.filterButtonStyleBorder}>
-          <div className={productPageStyles.filterButtonStyle}>
-            <div className={productPageStyles.filterButtonPrice}>
-              <p>По цене</p>
-              <button type="button" onClick={() => productSort('filterPriceUp')}>
-                По уменьшению
-              </button>
-              <button type="button" onClick={() => productSort('filterPriceDown')}>
-                По увеличению
-              </button>
-            </div>
-            <div className={productPageStyles.filterButtonDiscount}>
-              <p>По скидке</p>
-              <button type="button" onClick={() => productSort('filterDiscountUp')}>
-                Скидка по уменьшению
-              </button>
-              <button type="button" onClick={() => productSort('filterDiscountDown')}>
-                Скидка по увеличению
-              </button>
-            </div>
-            <div className={productPageStyles.filterButtonCreated_atUp}>
-              <p>По дате</p>
-              <button type="button" onClick={() => productSort('filterCreated_atUp')}>
-                Дата по уменьшению
-              </button>
-              <button type="button" onClick={() => productSort('filterCreated_atDown')}>
-                Дата по увеличению
-              </button>
+      {products.length === 0 && (
+        <div className={productPageStyles.basketEmptyBlok}>
+          <div className={productPageStyles.basketEmpty}>
+            <div>
+              <img src={logoTwo} alt="лого" />
+              <h3>Такого товара не существует</h3>
             </div>
           </div>
         </div>
-      </div>
-      <div className={productPageStyles.productsContainer}>
-        {sortProducts.map(({ _id: id, ...restProduct }) => (
-          <ProductOne {...restProduct} id={id} key={id} />
-        ))}
-      </div>
+      )}
+
+      {products.length > 0 && (
+        <div className={productPageStyles.productsContainer}>
+          {products.map(({ _id: id, ...restProduct }) => (
+            <ProductOne {...restProduct} id={id} key={id} />
+          ))}
+        </div>
+      )}
 
     </div>
   )

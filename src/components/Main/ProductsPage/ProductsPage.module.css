@@ -58,6 +58,12 @@
     cursor: pointer;
 }
 
+.filterButtonStyle button:focus {
+    color: white;
+    background-color: #FF8900;
+    border: none;
+}
+
 .filterButtonStyleBorder {
     border: 3px solid #FF8900;
     box-shadow: 0px 0px 10px #d87300;
@@ -94,4 +100,38 @@
     text-decoration: none;
     color: white;
     border-radius: 6px;
+}
+
+.basketEmpty {
+    width: 350px;
+    height: auto;
+    padding: 30px;
+    background-color: rgb(8, 0, 57);
+    box-shadow: 0px 0px 10px #b66100;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 6px;
+    font-family: Georgia, serif;
+    margin: 100px;
+}
+
+.basketEmptyBlok {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 30px;
+    text-align: center;
+}
+
+.basketEmpty img {
+    height: 90%;
+    width: 90%;
+}
+
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -25px;
 }

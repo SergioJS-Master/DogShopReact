@@ -92,9 +92,9 @@ export function FavoriteTitle() {
 
                 {data.map((item) => (
                   <FavoriteCard
+                    key={item._id}
                     pictures={item.pictures}
                     index={item.index}
-                    key={item._id}
                     id={item._id}
                     name={item.name}
                     price={item.price}

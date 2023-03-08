@@ -87,6 +87,7 @@ export function ProductDetail() {
   const oneProduct = details.map(({ id }) => id).includes(data._id)
   const oneProductInFavorite = favorite.map(({ id }) => id).includes(data._id)
   const isMyProductTrueFalse = data.author._id
+  console.log(data)
   return (
     <div className={ProductDetailStyles.ProductDetailStylesBorderOne}>
       <div className={ProductDetailStyles.ProductDetailStylesBorder}>
@@ -245,7 +246,10 @@ export function ProductDetail() {
           </button>
         </div>
       </Modal>
-      <Modal isOpen={isOpenModalForm} closeHandler={closeModalHandlerForm}>
+      <Modal
+        isOpen={isOpenModalForm}
+        closeHandler={closeModalHandlerForm}
+      >
         <div className={ProductDetailStyles.buttonCloseX}>
           <button
             type="button"
@@ -255,7 +259,15 @@ export function ProductDetail() {
             X
           </button>
         </div>
-        <EdditAddProduct />
+        <EdditAddProduct
+          price={data.price}
+          wight={data.wight}
+          description={data.description}
+          discount={data.discount}
+          stock={data.stock}
+          pictures={data.pictures}
+          name={data.name}
+        />
       </Modal>
     </div>
   )

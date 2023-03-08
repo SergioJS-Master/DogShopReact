@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
@@ -32,140 +33,206 @@ export function Header() {
     setIsOpenModal(true)
   }
   return (
-    <header className={headerStyle.header}>
-      <nav>
-        <ul>
-          <div className={headerStyle.liHeaderBtn}>
-            <div>
-              <li>
-                <NavLink
-                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
-                  to="/products"
-                >
-                  <i className="fa-solid fa-bars" />
-                </NavLink>
-              </li>
-            </div>
-            <div className={headerStyle.headerLogoLink}>
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
-                >
-                  <img src={logoHeaderOne} alt="" />
-                </NavLink>
-              </li>
-            </div>
-          </div>
-          <div className={headerStyle.liHeaderSignInfoBtn}>
-            <div className={headerStyle.searchStyle}>
+    <div>
+      {token && (
+      <header className={headerStyle.header}>
+        <nav>
+          <ul>
+            <div className={headerStyle.liHeaderBtn}>
               <div>
                 <li>
                   <NavLink
+                    className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
                     to="/products"
                   >
-                    <Search />
+                    <i className="fa-solid fa-bars" />
                   </NavLink>
                 </li>
               </div>
+              <div className={headerStyle.headerLogoLink}>
+                <li>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                  >
+                    <img src={logoHeaderOne} alt="" />
+                  </NavLink>
+                </li>
+              </div>
+            </div>
+            <div className={headerStyle.liHeaderSignInfoBtn}>
               <div className={headerStyle.searchStyle}>
+                <div>
+                  <li>
+                    <NavLink
+                      to="/products"
+                    >
+                      <Search />
+                    </NavLink>
+                  </li>
+                </div>
+                <div className={headerStyle.searchStyle}>
+                  <li>
+                    <NavLink
+                      onClick={openModalHandler}
+                    >
+                      <i className="fa-solid fa-wand-magic-sparkles" />
+                    </NavLink>
+                  </li>
+                </div>
+              </div>
+              <div className={headerStyle.basketButtonStyle}>
                 <li>
                   <NavLink
-                    onClick={openModalHandler}
+                    to="/basket"
+                    className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
                   >
-                    <i className="fa-solid fa-wand-magic-sparkles" />
+                    <i className="fa-solid fa-basket-shopping" />
+                  </NavLink>
+                  <div className={headerStyle.basketProductLength}>
+                    {arrProductInBasket.length > 0 && <p>{arrProductInBasket.length}</p>}
+                  </div>
+                </li>
+              </div>
+              <div className={headerStyle.favoriteButtonStyle}>
+                <li>
+                  <NavLink
+                    to="/favorite"
+                    className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                  >
+                    <i className="fa-solid fa-heart" />
+                  </NavLink>
+                  <div className={headerStyle.basketProductLengthFavorite}>
+                    {arrProductInFavorite.length > 0 && <p>{arrProductInFavorite.length}</p>}
+                  </div>
+                </li>
+              </div>
+              <div>
+                <li>
+                  <NavLink
+                    to="/user"
+                    className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
+                  >
+                    <i className="fa-solid fa-user" />
+
+                  </NavLink>
+                </li>
+              </div>
+              <div>
+                {token ? (
+                  <li>
+                    <NavLink
+                      to="/signin"
+                      onClick={kickUser}
+                    >
+                      Выйти
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/signin"
+                    >
+                    Войти
+                    </NavLink>
+                  </li>
+                )}
+              </div>
+            </div>
+          </ul>
+        </nav>
+        {token && (
+        <Modal
+          isOpen={isOpenModal}
+          closeHandler={closeModalHandler}
+          className={headerStyle.modal}
+        >
+          <div className={headerStyle.buttonCloseX}>
+            <button
+              type="button"
+              onClick={closeModalHandler}
+            >
+              X
+            </button>
+          </div>
+
+          <AddProduct />
+        </Modal>
+        )}
+      </header>
+      )}
+
+      {!token && (
+        <header className={headerStyle.header}>
+        <nav>
+          <ul>
+            <div className={headerStyle.liHeaderBtn}>
+              <div className={headerStyle.headerLogoLink}>
+                <li>
+                  <NavLink
+                    to="/"
+                  >
+                    <img
+                      src={logoHeaderOne}
+                      alt="logo"
+                    />
                   </NavLink>
                 </li>
               </div>
             </div>
-            <div className={headerStyle.basketButtonStyle}>
-              <li>
-                <NavLink
-                  to="/basket"
-                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
-                >
-                  <i className="fa-solid fa-basket-shopping" />
-                </NavLink>
-                <div className={headerStyle.basketProductLength}>
-                  {arrProductInBasket.length > 0 && <p>{arrProductInBasket.length}</p>}
-                </div>
-              </li>
-            </div>
-            <div className={headerStyle.favoriteButtonStyle}>
-              <li>
-                <NavLink
-                  to="/favorite"
-                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
-                >
-                  <i className="fa-solid fa-heart" />
-                </NavLink>
-                <div className={headerStyle.basketProductLengthFavorite}>
-                  {arrProductInFavorite.length > 0 && <p>{arrProductInFavorite.length}</p>}
-                </div>
-              </li>
-            </div>
-            <div>
-              <li>
-                <NavLink
-                  to="/user"
-                  className={({ isActive }) => classNames({ [headerStyle.activeLink]: isActive })}
-                >
-                  <i className="fa-solid fa-user" />
-
-                </NavLink>
-              </li>
-            </div>
-            <div>
-              <li>
-                <NavLink
-                  to="/signup"
-                >
-                  Регистрация
-
-                </NavLink>
-              </li>
-            </div>
-            <div>
-              {token ? (
+            <div className={headerStyle.liHeaderSignInfoBtn}>
+              <div>
                 <li>
                   <NavLink
-                    to="/signin"
-                    onClick={kickUser}
+                    to="/signup"
                   >
-                    Выйти
+                    Регистрация
+
                   </NavLink>
                 </li>
-              ) : (
-                <li>
-                  <NavLink
-                    to="/signin"
-                  >
+              </div>
+              <div>
+                {token ? (
+                  <li>
+                    <NavLink
+                      to="/signin"
+                      onClick={kickUser}
+                    >
+                      Выйти
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/signin"
+                    >
                     Войти
-                  </NavLink>
-                </li>
-              )}
+                    </NavLink>
+                  </li>
+                )}
+              </div>
             </div>
+          </ul>
+        </nav>
+        {token && (
+        <Modal
+          isOpen={isOpenModal}
+          closeHandler={closeModalHandler}
+          className={headerStyle.modal}
+        >
+          <div className={headerStyle.buttonCloseX}>
+            <button
+              type="button"
+              onClick={closeModalHandler}
+            >
+              X
+            </button>
           </div>
-        </ul>
-      </nav>
-      {token && (
-      <Modal
-        isOpen={isOpenModal}
-        closeHandler={closeModalHandler}
-        className={headerStyle.modal}
-      >
-        <div className={headerStyle.buttonCloseX}>
-          <button
-            type="button"
-            onClick={closeModalHandler}
-          >
-            X
-          </button>
-        </div>
-
-        <AddProduct />
-      </Modal>
+          <AddProduct />
+        </Modal>
+        )}
+        </header>
       )}
-    </header>
+    </div>
   )
 }

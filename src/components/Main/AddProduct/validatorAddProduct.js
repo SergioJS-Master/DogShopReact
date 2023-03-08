@@ -4,17 +4,17 @@ import * as Yup from 'yup'
 
 export const createFormAddroduct = Yup.object({
   wight: Yup.string()
-    .required(),
+    .required('Введите вес'),
   description: Yup.string()
-    .required(),
+    .required('Введите описание'),
   discount: Yup.string()
-    .required(),
+    .required('Введите скидку'),
   stock: Yup.string()
-    .required(),
+    .required('Введите количество'),
   pictures: Yup.string()
-    .required(),
+    .required('Укажите картинку в URL'),
   name: Yup.string()
-    .required(),
+    .required('Введите имя'),
   price: Yup.string()
-    .required(),
+    .required('Введите цену'),
 })
